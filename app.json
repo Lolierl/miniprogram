@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/message/message",
+    "pages/friend/friend",
+    "pages/chat/chat",
+    "pages/me/me",
+    "custom_tab_bar/index",
+    "pages/friends/friends"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Photochat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "renderer": "skyline",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "friends/friends",
+        "iconPath": "image/friends_no.png",
+        "selectedIconPath": "image/friends_yes.png",
+        "text": "friends"
+      },
+      {
+        "pagePath": "me/me",
+        "iconPath": "image/me_no.png",
+        "selectedIconPath": "image/me_yes.png",
+        "text": "me"
+      }
+    ]
+  }
+}
