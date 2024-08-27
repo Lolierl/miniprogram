@@ -1,33 +1,66 @@
-Component({
+// custom_tab_bar/index.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    selected: 0,
-    color: "#7A7E83",
-    selectedColor: "#3cc51f",
-    "list": [
-      {
-        "pagePath": "friends/friends",
-        "iconPath": "image/friends_no.png",
-        "selectedIconPath": "image/friends_yes.png",
-        "text": "friends"
-      },
-      {
-        "pagePath": "me/me",
-        "iconPath": "image/me_no.png",
-        "selectedIconPath": "image/me_yes.png",
-        "text": "me"
-      }
-    ]
+
   },
-  attached() {
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+
   },
-  methods: {
-    switchTab(e) {
-      const data = e.currentTarget.dataset
-      const url = data.path
-      wx.switchTab({url})
-      this.setData({
-        selected: data.index
-      })
-    }
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
 })
