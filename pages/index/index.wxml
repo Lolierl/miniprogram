@@ -1,1 +1,10 @@
 
+
+<image src="{{userInfo.avatarUrl}}"></image>
+<view>{{userInfo.nickName}}</view>
+
+<input type="text"placeholder="请输入账号"/>
+<input type="text"placeholder="请输入密码"/>
+<input type="text"placeholder="请确认密码"/>
+
+<button type="primary">注册</button>

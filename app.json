@@ -1,18 +1,19 @@
 {
   "pages": [
-    "pages/message/message",
-    "pages/index/index",
     
+    "pages/index/index",
+    "pages/message/message",
     "pages/chat/chat",
     "pages/me/me",
     "custom_tab_bar/index",
     "pages/friends/friends"
   ],
   "window": {
+    "navigationStyle": "custom",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Photochat",
     "navigationBarTextStyle": "black"
+    
   },
   "style": "v2",
   "renderer": "skyline",
