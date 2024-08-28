@@ -1,2 +1,13 @@
 <!--pages/friends/friends.wxml-->
-<text>pages/friends/friends.wxml</text>
+<view class="container">
+  <text class="title">My Friends</text>
+  
+  <block wx:for="{{friends}}" wx:key="num">
+    <view class="friend-item">
+      <image class="friend-avatar" src="{{item.faceImg}}" mode="aspectFill" />
+      <view class="friend-info">
+        <text class="friend-name">{{item.nickName}}</text>
+      </view>
+    </view>
+  </block>
+</view>

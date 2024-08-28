@@ -1,65 +1,61 @@
 // pages/friends/friends.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    friends:[]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    this.getUsers()
+  }, 
+  getUsers(){
+    var self = this;
+    const friendsList = [
+      { num: 1, faceImg: '/image/friends_no.png', nickName: 'Alice', admin: true, password: '1234' },
+      { num: 2, faceImg: '/image/friends_yes.png', nickName: 'Bob', admin: false, password: '5678' },
+      { num: 3, faceImg: '/image/me_no.png', nickName: 'Charlie', admin: true, password: 'abcd' }
+    ]
+    wx.cloud.database().collection('chat_users').get({
+      
+      success(res) {
+        console.log(res)
+        self.setData({
+          //friends: res.data
+          friends:friendsList
+        });
+      },
+      fail: function (err) {
+        console.error('获取通讯录失败', err);
+        wx.showToast({
+          title: '获取通讯录失败',
+          icon: 'none'
+        });
+      }
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload() {
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh() {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom() {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage() {
 
   }
