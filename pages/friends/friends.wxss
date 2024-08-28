@@ -1,1 +1,46 @@
 /* pages/friends/friends.wxss */
+/* 页面容器样式 */
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #333333;
+}
+/* 单个好友项的样式 */
+.friend-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 好友头像样式 */
+.friend-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* 好友昵称样式 */
+.friend-name {
+  font-size: 18px;
+  color: #333333;
+}
