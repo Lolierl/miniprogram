@@ -1,13 +1,21 @@
-.cover1-img {
-  width: 100%;
-  height: 400rpx;
+.avatar-img{
+  width: 210rpx;
+  height: 210rpx;
+  align-items: center;
 }
 
-.login-text {
-  font-weight: 550;
-  font-size: 46rpx;
-  margin: -40rpx 85rpx;
-  color: #c6e173;
+.avatar-text{
+  font-size: 24rpx;
+  color: rgb(219, 216, 216);
+  margin-top: 20rpx;
+}
+
+.avatar-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 230rpx 0 0 0;
+  background-color: #fff;
 }
 
 .account-img {
@@ -22,7 +30,7 @@
   align-items: center;
   margin-left: 80rpx;
   margin-right: 80rpx;
-  margin-top: 200rpx;
+  margin-top: 140rpx;
   border-bottom: 4rpx solid #eee;
   padding-bottom: 10rpx;
 }
@@ -48,7 +56,7 @@
   color: white;
 }
 
-.register{
+.login{
   text-align: center;
   margin-top: 50rpx;
   color: #c6e173;

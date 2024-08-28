@@ -1,0 +1,37 @@
+
+
+<button class="avatar-wrap" open-type="chooseAvatar" bindchooseavatar="getAvatar">
+  <image src="{{avatarUrl?avatarUrl:'/image/avatar.png'}}" class="avatar-img"></image>
+  <view class="avatar-text">Click to Upload Avatar</view>
+</button>
+
+<form bindsubmit="register1">
+
+  <view class="wrap1">
+    <image src="/image/account.png" class="account-img"></image>
+    <input type="nickname" name="nickname" placeholder="Name" class="ipt"/>
+  </view>
+
+  <view class="wrap2">
+    <image src="/image/phonenumber.png" class="account-img"></image>
+    <input type="number" name="phone" placeholder="Phone number" class="ipt"/>
+  </view>
+
+  <view class="wrap2">
+    <image src="/image/password.png" class="account-img"></image>
+    <input type="password" name="password" placeholder="Password" class="ipt"/>
+  </view>
+
+  <view class="wrap2">
+    <image src="/image/password.png" class="account-img"></image>
+    <input type="password" name="password2" placeholder="Repeat Password" class="ipt"/>
+  </view>
+
+  <button form-type="submit" class="but1">Register</button>
+
+</form>
+
+<view class="login" bind:tap="toLogin">Log in</view>
+
+
+

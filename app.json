@@ -6,14 +6,14 @@
     "pages/chat/chat",
     "pages/me/me",
     "custom_tab_bar/index",
-    "pages/friends/friends"
+    "pages/friends/friends",
+    "pages/register/register"
   ],
   "window": {
     "navigationStyle": "custom",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black"
-    
   },
   "style": "v2",
   "renderer": "skyline",
@@ -29,9 +29,8 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "tabBar": {
-    
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#c6e173",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
@@ -39,19 +38,19 @@
         "pagePath": "pages/message/message",
         "iconPath": "image/chat_no.png",
         "selectedIconPath": "image/chat_yes.png",
-        "text": "chat"
+        "text": "Chats"
       },
       {
         "pagePath": "pages/friends/friends",
         "iconPath": "image/friends_no.png",
         "selectedIconPath": "image/friends_yes.png",
-        "text": "friends"
+        "text": "Friends"
       },
       {
         "pagePath": "pages/me/me",
         "iconPath": "image/me_no.png",
         "selectedIconPath": "image/me_yes.png",
-        "text": "me"
+        "text": "Me"
       }
     ]
   }

@@ -1,10 +1,24 @@
 
 
-<image src="{{userInfo.avatarUrl}}"></image>
-<view>{{userInfo.nickName}}</view>
+<image src="/image/cover1.png" class="cover1-img"></image>
 
-<input type="text"placeholder="请输入账号"/>
-<input type="text"placeholder="请输入密码"/>
-<input type="text"placeholder="请确认密码"/>
 
-<button type="primary">注册</button>
+<view class="login-text">Welcome!</view>
+
+
+<view class="wrap1">
+  <image src="/image/account.png" class="account-img"></image>
+  <input type="text" name="" id="" placeholder="Phone Number" class="ipt" bindinput="getAccount"/>
+</view>
+
+
+<view class="wrap2">
+  <image src="/image/password.png" class="account-img"></image>
+  <input type="password" name="" id="" placeholder="Password" class="ipt" bindinput="getPassword"/>
+</view>
+
+
+<button class="but1" bind:tap="login">Log in</button>
+
+
+<view class="register" bind:tap="toRegister">Register a New Account</view>

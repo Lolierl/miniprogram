@@ -1,24 +1,71 @@
 // index.js
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-
 Page({
-  data: {
 
-    },
-  onLoad() {
+  //跳转到注册页面
+  toRegister(){
+    wx.navigateTo({
+      url: '/pages/register/register',
+    })
+  },
 
-    },
-  
-  getUserProfile(e) {
-    var that = this;
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        that.setData({
-          userInfo: res.userInfo
-         })
+  //获取账号
+  getAccount(event){
+    console.log(event.detail.value)
+    this.setData({
+      phone:event.detail.value
+    })
+  },
+
+  //获取密码
+  getPassword(event){
+    console.log(event.detail.value)
+    this.setData({
+      password:event.detail.value
+    })
+  },
+
+  //登录
+  login(){
+    if(!this.data.phone||!this.data.password){
+      wx.showToast({
+        title: '请输入完整信息',
+        icon:'error'
+      })
+      return
+    }
+    wx.cloud.database().collection("login_users").where({
+      phone:this.data.phone,
+      password:this.data.password
+    })
+    .get()
+    .then(result=>{
+      console.log(result)
+      if (result.data.length!=0){
+        wx.setStorageSync('userInfo', result.data[0])
+        wx.switchTab({
+          url: '/pages/message/message',
+          success(){
+            wx.showToast({
+              title: 'successfully',
+              icon:'success'
+            })
+          }
+        })
+      }
+      else{
+        wx.showToast({
+          title: '账号或密码错误',
+          icon:'error'
+        })
       }
     })
   },
+  onLoad(){
+    if (wx.getStorageSync('userInfo')) {
+      wx.switchTab({
+        url: '/pages/message/message',
+      })
+    }
+  }
+
 })
