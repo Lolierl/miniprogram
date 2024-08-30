@@ -1,2 +1,13 @@
 <!--pages/chat/chat.wxml-->
-<text>pages/chat/chat.wxml</text>
+<view class="chat-list">
+  <text class="title">My Chats</text>
+  <block wx:for="{{chatList}}" wx:key="num">
+    <view class="chat-item" bindtap="navigateToMessage" data-otherUserNum="{{item.otherUserInfo.num}}">
+      <image class="avatar" src="{{item.otherUserInfo.avatarUrl}}" mode="aspectFill" />
+      <view class="chat-info">
+        <text class="nickname">{{item.otherUserInfo.nickName}}</text>
+        <view class="last-message">{{item.lastMessage}}</view>
+      </view>
+    </view>
+  </block>
+</view>
