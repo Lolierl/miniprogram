@@ -43,7 +43,7 @@ Page({
       if (result.data.length!=0){
         wx.setStorageSync('userInfo', result.data[0])
         wx.switchTab({
-          url: '/pages/message/message',
+          url: '/pages/chat/chat',
           success(){
             wx.showToast({
               title: 'successfully',
@@ -63,7 +63,7 @@ Page({
   onLoad(){
     if (wx.getStorageSync('userInfo')) {
       wx.switchTab({
-        url: '/pages/message/message',
+        url: '/pages/chat/chat',
       })
     }
   }

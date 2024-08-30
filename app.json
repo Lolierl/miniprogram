@@ -35,7 +35,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/message/message",
+        "pagePath": "pages/chat/chat",
         "iconPath": "image/chat_no.png",
         "selectedIconPath": "image/chat_yes.png",
         "text": "Chats"

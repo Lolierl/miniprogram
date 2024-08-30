@@ -1,1 +1,49 @@
-/* pages/chat/chat.wxss */
+.title {
+  font-size: 50rpx;
+  font-weight: bold;
+  margin-top: 60rpx;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+  color: #333333;
+}
+.chat-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-item {
+  display: flex;
+  padding: 30rpx;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nickname {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.last-message {
+  font-size: 30rpx;
+  color: #999;
+}
+
+.time {
+  font-size: 18rpx;
+  color: #ccc;
+}

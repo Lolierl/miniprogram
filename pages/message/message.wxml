@@ -1,2 +1,29 @@
 <!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view class="back-button" bindtap="navigateBack">
+  <image src="/image/icon.png" class="back-icon"/>
+</view>
+<view class="container">
+  <!-- 顶部显示对方昵称 -->
+  <view class="header">
+    <text class="nickname">{{otherUserInfo.nickName}}</text>
+  </view>
+ 
+  <!-- 消息列表 -->
+  <scroll-view class="message-list" scroll-y="true">
+    <block wx:for="{{chatMessages}}" wx:key="id">
+      <view class="message-item {{item.senderNum == currentUserNum ? 'sent' : 'received'}}">
+        <text class="message-content">{{item.message}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 底部输入框和发送按钮 -->
+  <view class="footer">
+    <input 
+    class="input" 
+    placeholder="Type your message..."
+    bindinput="onInput"
+    value="{{messageText}}" />
+    <button class="send-button" bindtap="sendMessage">Send</button>
+  </view>
+</view>
