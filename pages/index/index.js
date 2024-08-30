@@ -46,7 +46,7 @@ Page({
           url: '/pages/message/message',
           success(){
             wx.showToast({
-              title: 'successfully',
+              title: 'success',
               icon:'success'
             })
           }

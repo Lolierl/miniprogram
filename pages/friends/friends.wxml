@@ -1,13 +1,48 @@
 <!--pages/friends/friends.wxml-->
+
+
+<view class="add-wrap1" bind:tap="toAddfriends">
+  <image src="/image/add.png" class="add-img" mode=""/>
+  <view class="add-text">Add New Friends</view>
+</view>
+
+<view class="add-wrap2" bind:tap="toNewfriends">
+  <image src="/image/New.png" class="add-img" mode=""/>
+  <view class="add-text">Friend Requests</view>
+</view>
+
+
+
+
+
+
+
+
+<image src="/image/cover2.png" class="cover2"/>
+
 <view class="container">
   <text class="title">My Friends</text>
+
   
-  <block wx:for="{{friends}}" wx:key="num">
-    <view class="friend-item">
-      <image class="friend-avatar" src="{{item.faceImg}}" mode="aspectFill" />
+  <block wx:for="{{friends}}" wx:key="index" >
+    <!-- <view>{{item.BuserPhone}}</view>
+    <view>{{myphone0}}</view> -->
+    <view class="friend-item" wx:if="{{item.BuserPhone==myphone0}}">
+      <image class="friend-avatar" src="{{item.AuserFace}}" mode="aspectFill" />
       <view class="friend-info">
-        <text class="friend-name">{{item.nickName}}</text>
+        <text class="friend-name">{{item.AuserName}}</text>
       </view>
     </view>
+
+    <view class="friend-item" wx:if="{{item.AuserPhone==myphone0}}">
+      <image class="friend-avatar" src="{{item.BuserFace}}" mode="aspectFill" />
+      <view class="friend-info">
+        <text class="friend-name">{{item.BuserName}}</text>
+      </view>
+    </view>
+
   </block>
 </view>
+
+<image src="/image/cover3.png" class="cover2"/>
+

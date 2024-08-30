@@ -1,0 +1,78 @@
+<!--pages/newfriends/newfriends.wxml-->
+
+<view class="back" bind:tap="toFriends">back</view>
+
+
+<!-- 显示我发送的请求 -->
+<view class="wrap1">
+  <view class="friend-item" wx:for="{{list}}" wx:key="index" wx:if="{{item.AuserPhone==myphone0&&item.status==0}}" >
+    
+    <image class="friend-avatar" src="{{item.BuserFace}}" mode="aspectFill" />
+  
+    <!-- <view>{{item.AuserPhone}}</view>
+    <view>{{myphone0}}</view>
+    <view>{{item.acount}}</view> -->
+
+    <view class="friend-info">
+      <text class="text1">[Waiting]</text>
+      <text class="friend-name">{{item.BuserName}}</text>
+    </view>
+
+    <view>
+      <view><image src="/image/send1.png" class="send-img"/></view>
+    </view>
+  </view>
+</view>
+
+<!-- 显示收到的请求 -->
+<view class="wrap2">
+  <view class="friend-item2" wx:for="{{list}}" wx:key="index" wx:if="{{item.BuserPhone==myphone0&&item.status==0}}" >
+    
+    <image class="friend-avatar2" src="{{item.AuserFace}}" mode="aspectFill" />
+
+    <view class="friend-info">
+      <text class="text1">[Request]</text>
+      <text class="friend-name">{{item.AuserName}}</text>
+    </view>
+
+    <view bind:tap="agree" data-id="{{item._id}}">
+    <text class="text2">Agree</text>
+    </view>
+
+    <view>
+      <view><image src="/image/send2.png" class="send-img2"/></view>
+    </view>
+  </view>
+</view>
+
+<!-- 显示已添加 -->
+<view class="wrap2">
+  <view class="friend-item3" wx:for="{{list}}" wx:key="index" wx:if="{{item.BuserPhone==myphone0&&item.status==1}}" >
+    
+    <image class="friend-avatar2" src="{{item.AuserFace}}" mode="aspectFill" />
+
+    <view class="friend-info">
+      <text class="text1">[Added]</text>
+      <text class="friend-name">{{item.AuserName}}</text>
+    </view>
+
+    <view>
+      <view><image src="/image/added.png" class="send-img3"/></view>
+    </view>
+  </view>
+
+  <view class="friend-item3" wx:for="{{list}}" wx:key="index" wx:if="{{item.AuserPhone==myphone0&&item.status==1 }}">
+    
+    <image class="friend-avatar2" src="{{item.BuserFace}}" mode="aspectFill" />
+
+    <view class="friend-info">
+      <text class="text1">[Added]</text>
+      <text class="friend-name">{{item.BuserName}}</text>
+    </view>
+
+    <view>
+      <view><image src="/image/added.png" class="send-img3"/></view>
+    </view>
+  </view>
+</view>
+

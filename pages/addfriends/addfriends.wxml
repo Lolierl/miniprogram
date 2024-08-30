@@ -1,0 +1,30 @@
+<!--pages/addfriends/addfriends.wxml-->
+
+<view class="search-wrap1">
+  <!-- <icon type="search" class="icon-search" wx:if="{{isSearch}}"/> -->
+  <input type="number" placeholder="phone number" bindinput="getInput" confirm-type="search"/>
+  <view bind:tap="search">
+    <image src="/image/search.png" class="search-img"/>
+  </view>
+</view>
+
+<view class="friend-item">
+    <image class="friend-avatar" src="{{search_list.avatarUrl}}" mode="aspectFill" />
+    <view class="friend-info">
+      <text class="friend-name">{{search_list.nickName}}</text>
+    </view>
+    <button wx:if="{{search}}" class="add-but" bind:tap="add">Add</button>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+<view class="back" bind:tap="toFriends">back</view>

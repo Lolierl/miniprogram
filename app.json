@@ -1,14 +1,19 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/message/message",
     "pages/chat/chat",
     "pages/me/me",
     "custom_tab_bar/index",
     "pages/friends/friends",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/addfriends/addfriends",
+    "pages/newfriends/newfriends"
   ],
+
+  "subPackages": [],
+
+
   "window": {
     "navigationStyle": "custom",
     "backgroundTextStyle": "light",

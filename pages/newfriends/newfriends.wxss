@@ -1,0 +1,110 @@
+/* pages/newfriends/newfriends.wxss */
+
+
+.back{
+  position: fixed;
+  bottom: 100rpx;
+  color: #c6e173;
+  margin-left: 320rpx;
+  font-size: 50rpx;
+  font-weight: 550;
+}
+
+.wrap1{
+  margin-top: 220rpx;
+}
+
+.friend-item {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  padding:16rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 60rpx;
+  background-color: #f0e6ed;
+}
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 好友头像样式 */
+.friend-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin-right: 15rpx;
+}
+
+/* 好友昵称样式 */
+.friend-name {
+  font-size: 32rpx;
+  color: grey;
+}
+
+.send-img {
+  margin-left: 320rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.send-img2 {
+  margin-left: 30rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.send-img3 {
+  margin-left: 340rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.text1 {
+  font-size: 32rpx;
+  color: white;
+  font-weight: 550;
+}
+
+
+.wrap2{
+  margin-top: 20rpx;
+}
+
+.friend-item2 {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  padding:16rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 60rpx;
+  background-color: #e5f0c6;
+}
+
+.friend-avatar2 {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin-right: 15rpx;
+}
+
+.text2{
+  font-size: 40rpx;
+  font-weight: 550;
+  color: #c6e173;
+  margin-left: 170rpx;
+}
+
+.friend-item3 {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  padding:16rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 60rpx;
+  background-color: #f0f0f0;
+}

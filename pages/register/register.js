@@ -114,7 +114,8 @@ Page({
         delta:0,
         success(){
           wx.showToast({
-            title: 'successfully',
+            title: 'success',
+            icon:"success"
           })
         }
       })
