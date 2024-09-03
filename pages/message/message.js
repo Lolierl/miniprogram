@@ -277,7 +277,10 @@ Page({
         }
       }
     });
-    this.onLoad()
+    const options = {
+      otherUserNum: this.data.otherUserNum
+    };
+    this.onLoad(options); 
   },
 
   changePhrase2(){
@@ -328,7 +331,10 @@ Page({
         }
       }
     });
-    this.onLoad()
+    const options = {
+      otherUserNum: this.data.otherUserNum
+    };
+    this.onLoad(options); 
   },
 
   changePhrase3(){
@@ -379,7 +385,10 @@ Page({
         }
       }
     });
-    this.onLoad()
+    const options = {
+      otherUserNum: this.data.otherUserNum
+    };
+    this.onLoad(options); 
   },
 
   changePhrase4(){
@@ -430,7 +439,10 @@ Page({
         }
       }
     });
-    this.onLoad()
+    const options = {
+      otherUserNum: this.data.otherUserNum
+    };
+    this.onLoad(options); 
   },
 
   extractFirstChar1(){
