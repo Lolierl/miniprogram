@@ -12,6 +12,7 @@
       <view class="chat-info">
         <text class="nickname">{{item.otherUserInfo.nickName}}</text>
         <view class="last-message">{{item.lastMessage}}</view>
+        <view class="red-dot" wx:if="{{item.hasUnreadMessages}}"></view>
       </view>
     </view>
   </block>
