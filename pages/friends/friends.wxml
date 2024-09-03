@@ -1,6 +1,8 @@
 <!--pages/friends/friends.wxml-->
 
-
+<scroll-view  scroll-y="true">
+  
+<!-- 加好友入口 -->
 <view class="add-wrap1" bind:tap="toAddfriends">
   <image src="/image/add.png" class="add-img" mode=""/>
   <view class="add-text">Add New Friends</view>
@@ -11,13 +13,7 @@
   <view class="add-text">Friend Requests</view>
 </view>
 
-
-
-
-
-
-
-
+<!-- 好友列表 -->
 <image src="/image/cover2.png" class="cover2"/>
 
 <view class="container">
@@ -27,17 +23,23 @@
   <block wx:for="{{friends}}" wx:key="index" >
     <!-- <view>{{item.BuserPhone}}</view>
     <view>{{myphone0}}</view> -->
-    <view class="friend-item" wx:if="{{item.BuserPhone==myphone0}}">
+    <view class="friend-item" wx:if="{{item.BuserPhone==myphone0}}" bind:tap="navigateToMessage">
       <image class="friend-avatar" src="{{item.AuserFace}}" mode="aspectFill" />
       <view class="friend-info">
         <text class="friend-name">{{item.AuserName}}</text>
       </view>
+      <view> 
+        <image src="/image/chat.png" class="gochat1" />
+      </view>
     </view>
 
-    <view class="friend-item" wx:if="{{item.AuserPhone==myphone0}}">
+    <view class="friend-item" wx:if="{{item.AuserPhone==myphone0}}" bind:tap="navigateToMessage">
       <image class="friend-avatar" src="{{item.BuserFace}}" mode="aspectFill" />
       <view class="friend-info">
         <text class="friend-name">{{item.BuserName}}</text>
+      </view>
+      <view> 
+        <image src="/image/chat.png" class="gochat1" />
       </view>
     </view>
 
@@ -46,3 +48,4 @@
 
 <image src="/image/cover3.png" class="cover2"/>
 
+</scroll-view>

@@ -1,6 +1,6 @@
 <!--pages/message/message.wxml-->
 <view class="back-button" bindtap="navigateBack">
-  <image src="/image/icon.png" class="back-icon"/>
+  <image src="/image/back.png" class="back-icon"/>
 </view>
 <view class="container">
   <!-- 顶部显示对方昵称 -->
@@ -10,9 +10,11 @@
  
   <!-- 消息列表 -->
   <scroll-view class="message-list" scroll-y="true">
-    <block wx:for="{{chatMessages}}" wx:key="id">
-      <view class="message-item {{item.senderNum == currentUserNum ? 'sent' : 'received'}}">
-        <text class="message-content">{{item.message}}</text>
+    <block wx:for="{{chatMessages}}" wx:key="id" >
+      <view class="message-container">
+        <view class="message-item {{item.senderNum == currentUserNum ? 'sent' : 'received'}}">
+          <text class="message-content">{{item.message}}</text>
+        </view>
       </view>
     </block>
   </scroll-view>

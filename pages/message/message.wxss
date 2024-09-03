@@ -7,9 +7,9 @@
 }
 .back-button {
   position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  width: 80rpx;
+  top: 89rpx;
+  left: 30rpx;
+  width: 70rpx;
   height: 80rpx;
   z-index: 1000;
 }
@@ -20,12 +20,14 @@
 }
 /* 顶部昵称栏 */
 .header {
-  background-color: #f8f8f8;
+  background-color: #c6e173;
   padding: 20rpx;
   text-align: center;
-  font-size: 36rpx;
-  font-weight: bold;
-  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  margin-top: -118rpx;
+  font-size: 42rpx;
+  font-weight: 550;
+  color: white;
 }
 
 /* 消息列表区域 */
@@ -36,21 +38,35 @@
 }
 
 /* 消息气泡样式 */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 确保容器内的项目在左侧对齐 */
+}
+
 .message-item {
-  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  max-width: 70%; /* 设定最大宽度 */
+  margin-top: 15rpx;
   margin-bottom: 20rpx;
   padding: 20rpx;
-  border-radius: 20rpx;
+  border-radius: 50rpx;
+  position: relative;
+  word-wrap: break-word; /* 自动换行 */
+  white-space: pre-wrap; /* 保留空白符和换行符 */
 }
 
 .sent {
-  background-color: #d2f8d2;
   align-self: flex-end;
+  margin-right: 20rpx;
+  background-color: #f0e6ed;
 }
 
 .received {
-  background-color: #f1f0f0;
   align-self: flex-start;
+  margin-left: 20rpx;
+  background-color: #f1f0f0;
 }
 
 /* 底部输入框和发送按钮 */
@@ -58,28 +74,28 @@
   display: flex;
   padding: 20rpx;
   background-color: #f8f8f8;
-  border-top: 1px solid #e5e5e5;
+  margin-bottom: -140rpx;
 }
 
 .input {
   flex: 1;
-  height: 80rpx;
-  padding: 0 20rpx;
+  height: 87rpx;
+  padding: 0 30rpx;
   font-size: 30rpx;
   border: 1px solid #d9d9d9;
-  border-radius: 20rpx;
+  border-radius: 50rpx;
   margin-right: 20rpx;
 }
 
 .send-button {
-  width: 150rpx;
-  height: 80rpx;
-  background-color: #3cc51f;
+  width: 100rpx;
+  height: 90rpx;
+  background-color: #c6e173;
   color: #ffffff;
   font-size: 40rpx;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20rpx;
+  border-radius: 50rpx;
 }

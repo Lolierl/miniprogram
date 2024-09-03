@@ -30,18 +30,7 @@ Page({
     })
   }, 
 
-  // //获取全部用户
-  // getUsers(){
-  //   var that = this;
-  //   wx.cloud.database().collection('login_users').get({
-  //     success(res){
-  //       console.log(res)
-  //       that.setData({
-  //         userList:res.data 
-  //       })
-  //     }
-  //   })
-  // },
+  
 
   //获取已添加好友
   getfriends(){
@@ -64,6 +53,14 @@ Page({
         friends:res.data
       })
     })
+  },
+
+  // 跳转聊天页面
+  navigateToMessage: function(e) {
+    const otherUserNum = e.currentTarget.dataset.otherusernum;
+    wx.navigateTo({
+      url: `/pages/message/message?otherUserNum=${otherUserNum}`
+    });
   },
   
 
