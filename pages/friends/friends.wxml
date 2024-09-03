@@ -23,7 +23,8 @@
   <block wx:for="{{friends}}" wx:key="index" >
     <!-- <view>{{item.BuserPhone}}</view>
     <view>{{myphone0}}</view> -->
-    <view class="friend-item" wx:if="{{item.BuserPhone==myphone0}}" bind:tap="navigateToMessage">
+    <view class="friend-item" wx:if="{{item.BuserPhone==myphone0}}" bind:tap="navigateToMessage"
+    data-otherUserNum="{{item.Auser}}">
       <image class="friend-avatar" src="{{item.AuserFace}}" mode="aspectFill" />
       <view class="friend-info">
         <text class="friend-name">{{item.AuserName}}</text>
@@ -33,7 +34,7 @@
       </view>
     </view>
 
-    <view class="friend-item" wx:if="{{item.AuserPhone==myphone0}}" bind:tap="navigateToMessage">
+    <view class="friend-item" wx:if="{{item.AuserPhone==myphone0}}" bind:tap="navigateToMessage" data-otherUserNum="{{item.Buser}}">
       <image class="friend-avatar" src="{{item.BuserFace}}" mode="aspectFill" />
       <view class="friend-info">
         <text class="friend-name">{{item.BuserName}}</text>

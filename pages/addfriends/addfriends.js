@@ -134,6 +134,8 @@ Page({
               BuserFace:that.data.search_list.avatarUrl,
               BuserName:that.data.search_list.nickName,
               BuserPhone:that.data.search_list.phone,
+              lastMessage: "",
+              lastMessageTime: Date.now(),  
               chatinfo:[],
               status:0//0表示已申请待通过; 1表示添加完成 ； 
             }

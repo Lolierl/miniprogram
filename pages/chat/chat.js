@@ -7,47 +7,20 @@ Page({
   onLoad: function() {
     this.loadChatList();
   },
-
-
-  // onShow(){
-  //   this.getfriends()
-  // },
-
-  // //获取已添加好友
-  // getfriends(){
-  //   let _ = db.command
-  //   let acount = wx.getStorageSync('userinfo').num
-  //   db.collection("chat_users").where(
-  //     _.or([
-  //       {
-  //         Auser: acount
-  //       },
-  //       {
-  //         Buser: acount
-  //       }
-  //     ])
-  //   ).where({
-  //     status:1
-  //   }).get().then(res=>{
-  //     console.log(res)
-  //     this.setData({
-  //       myMsglist:res.data
-  //     })
-  //   })
-  // },
-
+  onShow: function() {
+    this.loadChatList();
+  },
   loadChatList: function() {
     const db = wx.cloud.database();
-    // const currentUserNum = this.data.currentUserNum; // 假设你已经获取到了当前用户的 num
-    let currentUserNum = wx.getStorageSync('userinfo').num
-
+    let currentUserNum = wx.getStorageSync('userInfo').num
     db.collection('chat_users').where(
       db.command.or([
         { Auser: currentUserNum },
         { Buser: currentUserNum }
       ])
-      // .orderBy('lastMessageTime', 'desc')
-    ).get().then(res => {
+    ).orderBy('lastMessageTime', 'desc')
+    .get().then(res => {
+      console.log(res)
       const chatListPromises = res.data.map(chat_users => {
         let otherUserNum;
         
