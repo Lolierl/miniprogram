@@ -101,7 +101,7 @@
 .footer {
   display: flex;
   padding: 20rpx;
-  background-color: #f8f8f8;
+  background-color: white;
   margin-bottom: -140rpx;
 }
 
@@ -137,4 +137,48 @@
   justify-content: center;
   align-items: center;
   border-radius: 50rpx;
+}
+
+.wrap1{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.but1{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50rpx;
+  background-color: #f3ebed;
+  margin-bottom: 10rpx;
+  margin-left: 320rpx;
+  color: black;
+}
+
+.but2{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50rpx;
+  background-color: #efede1;
+  margin-bottom: 10rpx;
+  margin-left: 15rpx;
+}
+
+.but3{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50rpx;
+  background-color: #ebeed4;
+  margin-bottom: 10rpx;
+  margin-left: 15rpx;
+}
+
+.but4{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50rpx;
+  background-color: #e7f0c8;
+  margin-bottom: 10rpx;
+  margin-left: 15rpx;
 }

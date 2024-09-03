@@ -60,6 +60,7 @@ Page({
       }
     })
   },
+  
   onLoad(){
     if (wx.getStorageSync('userInfo')) {
       wx.switchTab({

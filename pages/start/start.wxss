@@ -1,0 +1,46 @@
+/* pages/start/start.wxss */
+
+.wrap1 {
+  height: 1000rpx;
+  background-color:#ecd6eb; 
+}
+
+.cover {
+  width: 100%;
+  height: 170rpx;
+  margin-bottom: -40rpx;
+}
+
+.text {
+  display: flex;
+  font-size: 60rpx;
+  font-weight: 550;
+  margin-top: 250rpx;
+  margin-left: 45rpx;
+  color: white;
+}
+
+.chat-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap2{
+  display: flex;
+  flex-direction: column;
+  margin: 140rpx 0rpx 0rpx 0rpx;
+  align-items: center;
+}
+
+.start-text {
+  color: #c6e173;
+  font-size: 80rpx;
+  font-weight: 550;
+}
+
+.start-img{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 100rpx;
+  margin-bottom: 10rpx;
+}

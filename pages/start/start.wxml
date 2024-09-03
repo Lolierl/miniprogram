@@ -1,0 +1,12 @@
+<!--pages/start/start.wxml-->
+<view class="chat-list">
+  <view class="wrap1">
+    <text class="text">Welcome to JustChat!</text>
+  </view>
+  <image src="/image/cover3.png" class="cover"/>
+</view>
+
+<view class="wrap2" bind:tap="toIndex">
+  <image src="/image/start.png" class="start-img" mode=""/>
+  <text class="start-text">Start</text>
+</view>

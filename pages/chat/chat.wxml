@@ -4,7 +4,7 @@
     <text class="title">My Chats</text>
   </view>
   <image src="/image/cover3.png" class="cover"/>
-  </view>
+</view>
 <scroll-view scroll-y="true">
   <block wx:for="{{chatList}}" wx:key="index" >
     <view class="chat-item" bindtap="navigateToMessage" data-otherUserNum="{{item.otherUserInfo.num}}">
