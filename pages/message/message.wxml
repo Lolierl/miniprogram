@@ -13,7 +13,12 @@
     <block wx:for="{{chatMessages}}" wx:key="id" >
       <view class="message-container">
         <view class="message-item {{item.senderNum == currentUserNum ? 'sent' : 'received'}}">
-          <text class="message-content">{{item.message}}</text>
+          <text wx:if="{{item.messageType === 'text'}}" class="message-content">{{item.message}}</text>
+          <!-- 如果消息是图片，则显示图片 -->
+          <block wx:if="{{item.messageType === 'image'}}">
+            <image class="message-image {{item.imageStatus === 'new image' && item.receiverNum === currentUserNum ? 'blurred' : ''}}" src="{{item.message}}" mode="aspectFill"  bindtap="previewImage" />
+            <button wx:if="{{item.imageStatus === 'new image' && item.receiverNum === currentUserNum}}" class="exchange-button" bindtap="exchangeImage" data-messageId="{{item._id}}">Exchange</button>
+          </block>
         </view>
       </view>
     </block>
@@ -21,6 +26,9 @@
 
   <!-- 底部输入框和发送按钮 -->
   <view class="footer">
+    <button class="photo-button" bindtap="chooseImage">
+      <image src="/image/photo.png" class="photo-icon"/>
+    </button>
     <input 
     class="input" 
     placeholder="Type your message..."
