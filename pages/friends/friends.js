@@ -15,21 +15,29 @@ Page({
   toNewfriends(){
     wx.navigateTo({
       url: '/pages/newfriends/newfriends',
-    })
+    }); 
   },
-
-
-
+  navigateToMessage: function(e) {
+    const otherUserNum = e.currentTarget.dataset.otherusernum;
+    wx.navigateTo({
+      url: `/pages/message/message?otherUserNum=${otherUserNum}`
+    })
+  }, 
 
   onLoad(options) {
-    // this.getUsers()
     this.getfriends()
     const myphone1 = wx.getStorageSync('userInfo').phone;
     this.setData({
       myphone0:myphone1
     })
   }, 
-
+  onShow(options) {
+    this.getfriends()
+    const myphone1 = wx.getStorageSync('userInfo').phone;
+    this.setData({
+      myphone0:myphone1
+    })
+  }, 
   
 
   //获取已添加好友
@@ -48,6 +56,7 @@ Page({
     ).where({
       status:1
     }).get().then(res=>{
+      console.log(res)
       console.log(res)
       this.setData({
         friends:res.data

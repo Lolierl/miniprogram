@@ -67,6 +67,10 @@ Page({
     }).then(() => {
       this.updateChat(messageText);
       this.setData({ messageText: '' });
+      const options = {
+        otherUserNum: this.data.otherUserNum
+      };
+      this.onLoad(options); 
     }).catch(console.error);
   },
   navigateBack: function() {
@@ -75,27 +79,19 @@ Page({
   updateChat: function(lastMessage) {
     const db = wx.cloud.database();
     const { currentUserNum, otherUserNum } = this.data;
-    db.collection('chats').where({
-      firstNum: Math.min(currentUserNum, otherUserNum),
-      secondNum: Math.max(currentUserNum, otherUserNum)
+
+    db.collection('chat_users').where({
+      $or: [
+        { Auser: currentUserNum, Buser: otherUserNum },
+        { Auser: otherUserNum, Buser: currentUserNum }
+      ]
     }).get().then(res => {
-      if (res.data.length > 0) {
-        return db.collection('chats').doc(res.data[0]._id).update({
+        return db.collection('chat_users').doc(res.data[0]._id).update({
           data: {
             lastMessage: lastMessage,
             lastMessageTime: Date.now()
           }
         });
-      } else {
-        return db.collection('chats').add({
-          data: {
-            firstNum: Math.min(currentUserNum, otherUserNum),
-            secondNum: Math.max(currentUserNum, otherUserNum),
-            lastMessage: lastMessage,
-            lastMessageTime: Date.now()
-          }
-        });
-      }
     }).then(console.log).catch(console.error);
-  }
+}
 });
