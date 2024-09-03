@@ -29,7 +29,7 @@
 .user-text2{
   position: fixed;
   bottom: 60rpx;
-  left: 312rpx;
+  left: 300rpx;
   color: #c6e173;
   font-weight: 550;
   font-size: 40rpx;

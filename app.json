@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/index/index",
     "pages/message/message",
     "pages/chat/chat",
@@ -9,11 +10,9 @@
     "pages/register/register",
     "pages/addfriends/addfriends",
     "pages/newfriends/newfriends"
+    
   ],
-
   "subPackages": [],
-
-
   "window": {
     "navigationStyle": "custom",
     "backgroundTextStyle": "light",

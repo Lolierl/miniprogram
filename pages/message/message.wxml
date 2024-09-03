@@ -19,6 +19,25 @@
     </block>
   </scroll-view>
 
+
+  <!-- 口头禅 -->
+  <view class="wrap1"> 
+    <view class="but1" bind:longpress="changePhrase1">
+      {{firstChar1}}
+    </view>
+    <view class="but2" bind:longpress="changePhrase2">
+      {{firstChar2}}
+    </view>
+    <view class="but3" bind:longpress="changePhrase3">
+      {{firstChar3}}
+    </view>
+    <view class="but4" bind:longpress="changePhrase4">
+      {{firstChar4}}
+    </view>
+  </view>
+
+  <!-- 添加口头禅 -->
+
   <!-- 底部输入框和发送按钮 -->
   <view class="footer">
     <input 
