@@ -106,7 +106,6 @@
 .footer {
   display: flex;
   padding: 20rpx;
-  background-color: white;
   margin-bottom: -140rpx;
 }
 
@@ -126,6 +125,7 @@
   height: 90rpx;
   border-radius: 50rpx;
   margin-left: 20rpx;
+  margin-top: -10rpx;
   background-color: #c6e173;
   display: flex;
   align-items: center;
@@ -146,6 +146,7 @@
   align-items: center;
   border-radius: 50rpx;
   margin-left: 20rpx;
+  margin-top: -10rpx;
 }
 
 .text-photo{
@@ -207,7 +208,7 @@
 .but4{
   width: 90rpx;
   height: 90rpx;
-  border-radius: 50rpx;
+  border-radius: 100rpx;
   background-color: #e7f0c8;
   margin-bottom: 10rpx;
   margin-left: 15rpx;
@@ -218,13 +219,55 @@
   line-height: 45px; /* 行高，确保文本垂直居中 */
 }
 
-.container1{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* .container1{
+  width: 110rpx;
+} */
+
+
+.bubble {
+  height: 90rpx;
+  background-color: #f0e6ed;
+  border-radius: 100rpx;
+  margin-top: 340rpx;
+  position: absolute;
+  bottom: 270rpx; /* 调整气泡到底部 */
+  opacity: 0; /* 初始状态不显示 */
+  animation: bubble-float 4s forwards; /* 动画名称和持续时间 */
+  padding: 10px; /* 内部填充 */
+  display: flex; /* 启用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  flex-wrap: wrap; /* 允许换行 */
 }
-#bubbles-container {
-  width: 100%;
-  height: rpx; /* 调整高度以适应您的页面布局 */
+
+@keyframes bubble-float {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-400rpx) scale(1); /* 气泡上升并放大 */
+    opacity: 0; /* 结束时透明 */
+  }
+}
+
+.bubbles-container {
   position: relative;
+  width: 100%;
+  height: 0rpx; /* 根据实际需要调整 */
+  
+}
+
+#bubbleButton {
+  position: relative; /* 确保按钮可以相对于气泡定位 */
+}
+
+.bubbletext{
+  color: white;
+  font-size: 50rpx;
+  font-weight: 550;
+  /* margin-top: 25rpx; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

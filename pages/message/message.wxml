@@ -37,20 +37,50 @@
         bindinput="onInput"
         value="{{messageText}}" />
     </view>
+    
   <!-- 口头禅 -->
     <view class="container1">
-      <view class="but1" bind:longpress="changePhrase1" bindtap="createBubbles">{{firstChar1}}</view>
-      <view id="bubbles-container"></view>
+      <view class="but1" id="bubbleButton" bind:longpress="changePhrase1" bind:tap="createBubbles1">{{firstChar1}}</view>
+      <view >
+        <block wx:for="{{bubbles}}" wx:key="*this">
+          <view class="bubble" style="left: {{item.left}}; animation-duration: {{item.duration}}s;">
+            <text class="bubbletext">{{item.text1}}</text>
+          </view>
+        </block>
+      </view>
     </view>
 
-    <view class="but2" bind:longpress="changePhrase2">
-      {{firstChar2}}
+    <view class="container1">
+      <view class="but2" id="bubbleButton" bind:longpress="changePhrase2" bind:tap="createBubbles2">{{firstChar2}}</view>
+      <view >
+        <block wx:for="{{bubbles}}" wx:key="*this">
+          <view class="bubble" style="left: {{item.left}}; animation-duration: {{item.duration}}s;">
+            <text class="bubbletext">{{item.text1}}</text>
+          </view>
+        </block>
+      </view>
     </view>
-    <view class="but3" bind:longpress="changePhrase3">
-      {{firstChar3}}
+
+    <view class="container1">
+      <view class="but3" id="bubbleButton" bind:longpress="changePhrase3" bind:tap="createBubbles3">{{firstChar3}}</view>
+      <view >
+        <block wx:for="{{bubbles}}" wx:key="*this">
+          <view class="bubble" style="left: {{item.left}}; animation-duration: {{item.duration}}s;">
+            <text class="bubbletext">{{item.text1}}</text>
+          </view>
+        </block>
+      </view>
     </view>
-    <view class="but4" bind:longpress="changePhrase4">
-      {{firstChar4}}
+
+    <view class="container1">
+      <view class="but4" id="bubbleButton" bind:longpress="changePhrase4" bind:tap="createBubbles4">{{firstChar4}}</view>
+      <view >
+        <block wx:for="{{bubbles}}" wx:key="*this">
+          <view class="bubble" style="left: {{item.left}}; animation-duration: {{item.duration}}s;">
+            <text class="bubbletext">{{item.text1}}</text>
+          </view>
+        </block>
+      </view>
     </view>
   
   </view>
