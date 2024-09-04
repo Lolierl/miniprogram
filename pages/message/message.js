@@ -43,20 +43,42 @@ Page({
     return wx.getStorageSync('userInfo').num;
   },
 
-  loadChatMessages: function(currentUserNum, otherUserNum) {
+  loadChatMessages: async function(currentUserNum, otherUserNum) {
     const db = wx.cloud.database();
-    db.collection('messages').where(
-      wx.cloud.database().command.or([
-        { senderNum: currentUserNum, receiverNum: otherUserNum },
-        { senderNum: otherUserNum, receiverNum: currentUserNum }
-      ])
-    ).orderBy('timestamp', 'asc').get()
-      .then(res => {
-        console.log(res); // Log the entire response object
-        this.setData({ chatMessages: res.data });
-      })
-      .catch(console.error);
-  },
+    const _ = db.command;
+    const BATCH_SIZE = 20; // 每次获取的记录数
+    let allMessages = [];  // 存储所有消息
+    let skip = 0;          // 从第几条记录开始获取
+    let hasMore = true;    // 是否还有更多记录
+
+    while (hasMore) {
+        try {
+            const res = await db.collection('messages').where(
+              _.or([
+                { senderNum: currentUserNum, receiverNum: otherUserNum },
+                { senderNum: otherUserNum, receiverNum: currentUserNum }
+              ])
+            ).orderBy('timestamp', 'asc')
+             .skip(skip)
+             .limit(BATCH_SIZE)
+             .get();
+
+            if (res.data.length > 0) {
+                allMessages = allMessages.concat(res.data);
+                skip += BATCH_SIZE;
+                if (res.data.length < BATCH_SIZE) {
+                    hasMore = false; // 没有更多记录了
+                }
+            } else {
+                hasMore = false; // 没有更多记录了
+            }
+        } catch (error) {
+            console.error(error);
+            hasMore = false; // 如果发生错误，停止循环
+        }
+    }
+    this.setData({ chatMessages: allMessages }); // 更新聊天消息
+  }, 
   onInput: function(e) {
     this.setData({ messageText: e.detail.value });
   },
@@ -448,12 +470,9 @@ Page({
   extractFirstChar1(){
     const db = wx.cloud.database();
     const currentUserNum = this.getCurrentUserNum();
-    console.log(currentUserNum); 
     db.collection('Phrase').where({ userNum: currentUserNum, num:1 }).get().then(res => {
       if (res.data.length > 0) {
       const content = res.data[0].textContent;
-      
-      console.log(content)
       if (content && content.length > 0) {
         // 取第一个字
         const firstChar = content.charAt(0);
@@ -469,12 +488,9 @@ Page({
   extractFirstChar2(){
     const db = wx.cloud.database();
     const currentUserNum = this.getCurrentUserNum();
-    console.log(currentUserNum); 
     db.collection('Phrase').where({ userNum: currentUserNum, num:2 }).get().then(res => {
       if (res.data.length > 0) {
       const content = res.data[0].textContent;
-      
-      console.log(content)
       if (content && content.length > 0) {
         // 取第一个字
         const firstChar = content.charAt(0);
@@ -490,12 +506,9 @@ Page({
   extractFirstChar3(){
     const db = wx.cloud.database();
     const currentUserNum = this.getCurrentUserNum();
-    console.log(currentUserNum); 
     db.collection('Phrase').where({ userNum: currentUserNum, num:3 }).get().then(res => {
       if (res.data.length > 0) {
       const content = res.data[0].textContent;
-      
-      console.log(content)
       if (content && content.length > 0) {
         // 取第一个字
         const firstChar = content.charAt(0);
@@ -511,12 +524,9 @@ Page({
   extractFirstChar4(){
     const db = wx.cloud.database();
     const currentUserNum = this.getCurrentUserNum();
-    console.log(currentUserNum); 
     db.collection('Phrase').where({ userNum: currentUserNum, num:4 }).get().then(res => {
       if (res.data.length > 0) {
       const content = res.data[0].textContent;
-      
-      console.log(content)
       if (content && content.length > 0) {
         // 取第一个字
         const firstChar = content.charAt(0);
