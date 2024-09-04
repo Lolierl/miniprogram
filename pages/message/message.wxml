@@ -17,7 +17,7 @@
           <!-- 如果消息是图片，则显示图片 -->
           <block wx:if="{{item.messageType === 'image'}}">
             <image class="message-image {{item.imageStatus === 'new image' && item.receiverNum === currentUserNum ? 'blurred' : ''}}" src="{{item.message}}" mode="aspectFill"  bindtap="previewImage" />
-            <button wx:if="{{item.imageStatus === 'new image' && item.receiverNum === currentUserNum}}" class="exchange-button" bindtap="exchangeImage" data-messageId="{{item._id}}">Exchange</button>
+            <view wx:if="{{item.imageStatus === 'new image' && item.receiverNum === currentUserNum}}" class="exchange-button" bindtap="exchangeImage" data-messageId="{{item._id}}">Exchange</view>
           </block>
         </view>
       </view>
@@ -25,8 +25,19 @@
   </scroll-view>
 
 
-  <!-- 口头禅 -->
+
+
+  
   <view class="wrap1"> 
+  <!-- 输入框 -->
+    <view>
+      <input 
+        class="input" 
+        placeholder="Type your message..."
+        bindinput="onInput"
+        value="{{messageText}}" />
+    </view>
+  <!-- 口头禅 -->
     <view class="but1" bind:longpress="changePhrase1">
       {{firstChar1}}
     </view>
@@ -41,18 +52,16 @@
     </view>
   </view>
 
-  <!-- 添加口头禅 -->
 
-  <!-- 底部输入框和发送按钮 -->
+  <!-- 底部发送按钮 -->
   <view class="footer">
-    <button class="photo-button" bindtap="chooseImage">
+    
+    <view class="send-button" bindtap="sendMessage">Send</view>
+    
+    <view class="photo-button" bindtap="chooseImage">
       <image src="/image/photo.png" class="photo-icon"/>
-    </button>
-    <input 
-    class="input" 
-    placeholder="Type your message..."
-    bindinput="onInput"
-    value="{{messageText}}" />
-    <button class="send-button" bindtap="sendMessage">Send</button>
+      <text class="text-photo">Photo</text>
+    </view>
+    
   </view>
 </view>

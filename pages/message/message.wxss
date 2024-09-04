@@ -42,12 +42,17 @@
 }
 
 .exchange-button {
-  background-color: #ffcc00;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin-bottom: 5px;
+  margin-top: 18rpx;
+  background-color: #c6e173;
+  border-radius: 50px;
+  padding: 16rpx 0rpx;
   color: white;
-  font-size: 12px;
+  font-size: 32rpx;
+  font-weight: 550;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 消息列表区域 */
@@ -107,36 +112,46 @@
 
 .input {
   flex: 1;
-  width: 70rpx;
+  width: 250rpx;
   height: 87rpx;
-  padding: 0 30rpx;
-  font-size: 30rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
   border: 1px solid #d9d9d9;
   border-radius: 50rpx;
-  margin-right: 20rpx;
+  margin-left: 0rpx;
+  margin-top: 0rpx;
 }
 .photo-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background-color: #f5f5f5;
+  width: 400rpx;
+  height: 90rpx;
+  border-radius: 50rpx;
+  margin-left: 20rpx;
+  background-color: #c6e173;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 20rpx; 
 }
+
 .send-button {
-  width: 50rpx;
+  width: 290rpx;
   height: 90rpx;
-  background-color: #c6e173;
+  background-color: #dbdbdb;
   color: #ffffff;
   font-size: 40rpx;
+  font-weight: 550;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50rpx;
+  margin-left: 20rpx;
+}
+
+.text-photo{
+  font-size: 40rpx;
+  font-weight: 550;
+  color: white;
 }
 
 .wrap1{
@@ -152,8 +167,13 @@
   border-radius: 50rpx;
   background-color: #f3ebed;
   margin-bottom: 10rpx;
-  margin-left: 320rpx;
-  color: black;
+  margin-left: 20rpx;
+  color: white;
+  font-weight: 550;
+  font-size: 40rpx;
+  text-align: center; /* 文本居中 */
+  line-height: 45px; /* 行高，确保文本垂直居中 */
+
 }
 
 .but2{
@@ -163,6 +183,11 @@
   background-color: #efede1;
   margin-bottom: 10rpx;
   margin-left: 15rpx;
+  color: white;
+  font-weight: 550;
+  font-size: 40rpx;
+  text-align: center; /* 文本居中 */
+  line-height: 45px; /* 行高，确保文本垂直居中 */
 }
 
 .but3{
@@ -172,6 +197,11 @@
   background-color: #ebeed4;
   margin-bottom: 10rpx;
   margin-left: 15rpx;
+  color: white;
+  font-weight: 550;
+  font-size: 40rpx;
+  text-align: center; /* 文本居中 */
+  line-height: 45px; /* 行高，确保文本垂直居中 */
 }
 
 .but4{
@@ -181,4 +211,9 @@
   background-color: #e7f0c8;
   margin-bottom: 10rpx;
   margin-left: 15rpx;
+  color: white;
+  font-weight: 550;
+  font-size: 40rpx;
+  text-align: center; /* 文本居中 */
+  line-height: 45px; /* 行高，确保文本垂直居中 */
 }
