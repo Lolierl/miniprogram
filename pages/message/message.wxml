@@ -38,9 +38,11 @@
         value="{{messageText}}" />
     </view>
   <!-- 口头禅 -->
-    <view class="but1" bind:longpress="changePhrase1">
-      {{firstChar1}}
+    <view class="container1">
+      <view class="but1" bind:longpress="changePhrase1" bindtap="createBubbles">{{firstChar1}}</view>
+      <view id="bubbles-container"></view>
     </view>
+
     <view class="but2" bind:longpress="changePhrase2">
       {{firstChar2}}
     </view>
@@ -50,6 +52,7 @@
     <view class="but4" bind:longpress="changePhrase4">
       {{firstChar4}}
     </view>
+  
   </view>
 
 

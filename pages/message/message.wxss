@@ -217,3 +217,14 @@
   text-align: center; /* 文本居中 */
   line-height: 45px; /* 行高，确保文本垂直居中 */
 }
+
+.container1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#bubbles-container {
+  width: 100%;
+  height: rpx; /* 调整高度以适应您的页面布局 */
+  position: relative;
+}
