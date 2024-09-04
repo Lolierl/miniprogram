@@ -10,7 +10,6 @@ Page({
 
   //获取账号
   getAccount(event){
-    console.log(event.detail.value)
     this.setData({
       phone:event.detail.value
     })
@@ -18,7 +17,6 @@ Page({
 
   //获取密码
   getPassword(event){
-    console.log(event.detail.value)
     this.setData({
       password:event.detail.value
     })
@@ -39,7 +37,6 @@ Page({
     })
     .get()
     .then(result=>{
-      console.log(result)
       if (result.data.length!=0){
         wx.setStorageSync('userInfo', result.data[0])
         wx.switchTab({
