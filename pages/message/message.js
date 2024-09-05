@@ -285,16 +285,10 @@ Page({
           db.collection('Phrase').where({ num: 1, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
-              db.collection('Phrase').where({ num: 1 }).update({
+              db.collection('Phrase').where({ num: 1, userNum:currentUserNum}).update({
                 data: {
                   textContent:this.data.textContent1,
                 },
-                // success: function(updateRes) {
-                //   console.log('更新成功', updateRes);
-                // },
-                // fail: function(updateErr) {
-                //   console.error('更新失败', updateErr);
-                // }
               });
             } else {
               // 如果记录不存在，则新增
@@ -304,12 +298,6 @@ Page({
                   textContent: this.data.textContent1,
                   userNum: currentUserNum, 
                 },
-                // success: function(addRes) {
-                //   console.log('新增成功', addRes);
-                // },
-                // fail: function(addErr) {
-                //   console.error('新增失败', addErr);
-                // }
               });
             }
           });
@@ -339,16 +327,10 @@ Page({
           db.collection('Phrase').where({ num: 2, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
-              db.collection('Phrase').where({ num: 2 }).update({
+              db.collection('Phrase').where({ num: 2, userNum:currentUserNum}).update({
                 data: {
                   textContent:this.data.textContent2,
                 },
-                // success: function(updateRes) {
-                //   console.log('更新成功', updateRes);
-                // },
-                // fail: function(updateErr) {
-                //   console.error('更新失败', updateErr);
-                // }
               });
             } else {
               // 如果记录不存在，则新增
@@ -358,12 +340,6 @@ Page({
                   textContent: this.data.textContent2,
                   userNum: currentUserNum, 
                 },
-                // success: function(addRes) {
-                //   console.log('新增成功', addRes);
-                // },
-                // fail: function(addErr) {
-                //   console.error('新增失败', addErr);
-                // }
               });
             }
           });
@@ -393,16 +369,10 @@ Page({
           db.collection('Phrase').where({ num: 3, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
-              db.collection('Phrase').where({ num: 3 }).update({
+              db.collection('Phrase').where({ num: 3, userNum:currentUserNum}).update({
                 data: {
                   textContent:this.data.textContent3,
                 },
-                // success: function(updateRes) {
-                //   console.log('更新成功', updateRes);
-                // },
-                // fail: function(updateErr) {
-                //   console.error('更新失败', updateErr);
-                // }
               });
             } else {
               // 如果记录不存在，则新增
@@ -412,12 +382,6 @@ Page({
                   textContent: this.data.textContent3,
                   userNum: currentUserNum, 
                 },
-                // success: function(addRes) {
-                //   console.log('新增成功', addRes);
-                // },
-                // fail: function(addErr) {
-                //   console.error('新增失败', addErr);
-                // }
               });
             }
           });
@@ -447,16 +411,10 @@ Page({
           db.collection('Phrase').where({ num: 4, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
-              db.collection('Phrase').where({ num: 4 }).update({
+              db.collection('Phrase').where({ num: 4, userNum:currentUserNum}).update({
                 data: {
                   textContent:this.data.textContent4,
                 },
-                // success: function(updateRes) {
-                //   console.log('更新成功', updateRes);
-                // },
-                // fail: function(updateErr) {
-                //   console.error('更新失败', updateErr);
-                // }
               });
             } else {
               // 如果记录不存在，则新增
@@ -466,12 +424,6 @@ Page({
                   textContent: this.data.textContent4,
                   userNum: currentUserNum, 
                 },
-                // success: function(addRes) {
-                //   console.log('新增成功', addRes);
-                // },
-                // fail: function(addErr) {
-                //   console.error('新增失败', addErr);
-                // }
               });
             }
           });
