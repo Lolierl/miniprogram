@@ -20,7 +20,6 @@ Page({
       ])
     ).orderBy('lastMessageTime', 'desc')
     .get().then(res => {
-      console.log(res)
       const chatListPromises = res.data.map(chat_users => {
         let otherUserNum;
         

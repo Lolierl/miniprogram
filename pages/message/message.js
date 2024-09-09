@@ -3,6 +3,7 @@ Page({
   data: {
     chatMessages: [],
     messageText: '',
+    lastMessageId: '', 
     currentUserNum: null, // 本人 num
     otherUserNum: null,   // 对方 num
     otherUserInfo: null,
@@ -67,6 +68,12 @@ Page({
     let skip = 0;          // 从第几条记录开始获取
     let hasMore = true;    // 是否还有更多记录
 
+    const notificationsRes = await db.collection('notifications').where({
+      userNum: otherUserNum,    // 聊天对象用户
+      chatUserNum: currentUserNum,  // 当前用户
+      isRead: false               // 未读消息
+    }).get();
+    const unreadMessageIds = notificationsRes.data.map(notification => notification.messageId);
     while (hasMore) {
         try {
             const res = await db.collection('messages').where(
@@ -78,8 +85,11 @@ Page({
              .skip(skip)
              .limit(BATCH_SIZE)
              .get();
-
+            
             if (res.data.length > 0) {
+                res.data.forEach(message => {
+                    message.isUnread = unreadMessageIds.includes(message._id);
+                });
                 allMessages = allMessages.concat(res.data);
                 skip += BATCH_SIZE;
                 if (res.data.length < BATCH_SIZE) {
@@ -93,12 +103,22 @@ Page({
             hasMore = false; // 如果发生错误，停止循环
         }
     }
-    this.setData({ chatMessages: allMessages }); // 更新聊天消息
+    let lastMessageId = ''
+    if (allMessages.length > 0)
+      lastMessageId = "message-" + allMessages[allMessages.length - 1]._id
+    this.setData({
+      chatMessages: allMessages
+    }, () => {
+      // 确保数据设置完成后，设置 lastMessageId 进行滚动
+        this.setData({
+          lastMessageId: lastMessageId
+        });
+    });
   }, 
   onInput: function(e) {
     this.setData({ messageText: e.detail.value });
   },
-  sendMessage: function(e) {
+  sendMessage: async function(e) {
     const { currentUserNum, otherUserNum, messageText } = this.data;
     const db = wx.cloud.database();
     if (!messageText.trim()) {
@@ -113,13 +133,14 @@ Page({
         messageType: 'text', 
         timestamp: Date.now()
       }
-    }).then(() => {
-      this.updateChat(messageText);
-      this.setData({ messageText: '' });
-      const options = {
-        otherUserNum: this.data.otherUserNum
-      };
-      this.onLoad(options); 
+    }).then(res => {
+      this.updateChat(messageText, res._id).then(() => {
+        this.setData({ messageText: '' });
+        const options = {
+          otherUserNum: this.data.otherUserNum
+        };
+        this.onLoad(options); 
+      })
     }).catch(console.error);
   },
   chooseImage: function() {
@@ -162,12 +183,12 @@ Page({
         imageStatus: 'new image', 
         timestamp: Date.now()
       }
-    }).then(() => {
-      this.updateChat('[New Image]');
+    }).then(res => {
+      this.updateChat('[New Image]', res._id).then(() => {
       const options = {
         otherUserNum: this.data.otherUserNum
       };
-      this.onLoad(options); 
+      this.onLoad(options); })
     }).catch(console.error);
   },
   previewImage: function(e) {
@@ -222,8 +243,8 @@ Page({
         imageStatus: 'new image', 
         timestamp: Date.now()
       }
-    }).then(() => {
-      this.updateChat('[New Image]');
+    }).then(res => {
+      this.updateChat('[New Image]', res._id);
       // 更新原先图片的状态为"replied message"
       return db.collection('messages').doc(messageId).update({
         data: {
@@ -241,31 +262,39 @@ Page({
     wx.navigateBack();
   },
 
-  updateChat: function(lastMessage) {
+  updateChat: async function(lastMessage, lastMessageId) {
     const db = wx.cloud.database();
     const { currentUserNum, otherUserNum } = this.data;
-
-    db.collection('chat_users').where({
+  
+    return db.collection('chat_users').where({
       $or: [
         { Auser: currentUserNum, Buser: otherUserNum },
         { Auser: otherUserNum, Buser: currentUserNum }
       ]
     }).get().then(res => {
-      db.collection('notifications').add({
-        data: {
-          userNum: otherUserNum,
-          chatUserNum: currentUserNum, 
-          messageId: res._id,
-          isRead: false
-        }})
-        return db.collection('chat_users').doc(res.data[0]._id).update({
+      if (res.data.length > 0) {
+        // 先添加通知
+        return db.collection('notifications').add({
           data: {
-            lastMessage: lastMessage,
-            lastMessageTime: Date.now()
+            userNum: otherUserNum,
+            chatUserNum: currentUserNum, 
+            messageId: lastMessageId,
+            isRead: false
           }
+        }).then(() => {
+          // 更新 chat_users 集合中的信息
+          return db.collection('chat_users').doc(res.data[0]._id).update({
+            data: {
+              lastMessage: lastMessage,
+              lastMessageTime: Date.now()
+            }
+          });
         });
-    }).then(console.log).catch(console.error); 
-  },
+      } else {
+        throw new Error('No matching chat_users found');
+      }
+    });
+  }, 
 
   // 修改口头禅
   changePhrase1(){

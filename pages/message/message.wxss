@@ -61,6 +61,7 @@
   padding: 20rpx;
   height: 600rpx;
   background-color: #ffffff;
+  overflow: scroll;
 }
 .message-image.blurred {
   width: 150px;
@@ -270,4 +271,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.unread-indicator {
+  color: red;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  font-weight: bold;
 }
