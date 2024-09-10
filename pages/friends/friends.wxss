@@ -9,7 +9,7 @@
 }
 .title {
   font-size: 42rpx;
-  font-weight: 550;
+  font-weight: 650;
   margin-bottom: 40rpx;
   color: white;
 }
@@ -51,12 +51,13 @@
 .cover2{
   width: 100%;
   height: 200rpx;
-  margin-bottom: -30rpx;
+  margin-top: -5rpx;
+  margin-bottom: -5rpx;
 }
 
 .add-wrap1{
   margin-top: 200rpx;
-  margin-left: 60rpx;
+  margin-left: 90rpx;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -71,13 +72,13 @@
 .add-text{
   margin-left: 20rpx;
   font-size: 40rpx;
-  font-weight: 550;
+  font-weight: 650;
   color: #c6e173;
 }
 
 .add-wrap2{
   margin-top: 40rpx;
-  margin-left: 60rpx;
+  margin-left: 90rpx;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -89,4 +90,10 @@
   margin-top: 10rpx;
   width: 60rpx;
   height: 60rpx;
+}
+
+.message-list {
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
 }

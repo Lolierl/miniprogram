@@ -33,7 +33,6 @@
     <view>
       <input 
         class="input" 
-        placeholder="Type your message..."
         bindinput="onInput"
         value="{{messageText}}" />
     </view>

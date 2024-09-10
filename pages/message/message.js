@@ -628,7 +628,7 @@ Page({
     }
     for (let i = 0; i < 2; i++) {
       const bubble = {
-        left: `${Math.random() * 60}% `,
+        left: `${Math.random() * 90}% `,
         duration: Math.random() * 2 + 1,
         text1: text
       };
@@ -677,7 +677,7 @@ Page({
     }
     for (let i = 0; i < 2; i++) {
       const bubble = {
-        left: `${Math.random() * 60}% `,
+        left: `${Math.random() * 90}% `,
         duration: Math.random() * 2 + 1,
         text1: text
       };

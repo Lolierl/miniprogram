@@ -58,7 +58,7 @@
 /* 消息列表区域 */
 .message-list {
   flex: 1;
-  padding: 20rpx;
+  padding: 0rpx;
   height: 600rpx;
   background-color: #ffffff;
   overflow: scroll;
@@ -93,13 +93,13 @@
 
 .sent {
   align-self: flex-end;
-  margin-right: 20rpx;
+  margin-right: 30rpx;
   background-color: #f0e6ed;
 }
 
 .received {
   align-self: flex-start;
-  margin-left: 20rpx;
+  margin-left: 30rpx;
   background-color: #f1f0f0;
 }
 
@@ -107,26 +107,26 @@
 .footer {
   display: flex;
   padding: 20rpx;
-  margin-bottom: -140rpx;
+  margin-bottom: -170rpx;
 }
 
 .input {
   flex: 1;
-  width: 250rpx;
-  height: 87rpx;
-  padding: 0 20rpx;
-  font-size: 26rpx;
+  width: 290rpx;
+  height: 88rpx;
+  padding: 0 15rpx;
+  font-size: 25rpx;
   border: 1px solid #d9d9d9;
   border-radius: 50rpx;
   margin-left: 0rpx;
-  margin-top: 0rpx;
+  margin-top: 20rpx;
 }
 .photo-button {
   width: 400rpx;
   height: 90rpx;
   border-radius: 50rpx;
-  margin-left: 20rpx;
-  margin-top: -10rpx;
+  margin-left:17rpx;
+  margin-top: -5rpx;
   background-color: #c6e173;
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@
   align-items: center;
   border-radius: 50rpx;
   margin-left: 20rpx;
-  margin-top: -10rpx;
+  margin-top: -5rpx;
 }
 
 .text-photo{
@@ -168,8 +168,9 @@
   height: 90rpx;
   border-radius: 50rpx;
   background-color: #f3ebed;
-  margin-bottom: 10rpx;
-  margin-left: 20rpx;
+  margin-top: 20rpx;
+  margin-bottom: 0rpx;
+  margin-left: 15rpx;
   color: white;
   font-weight: 550;
   font-size: 40rpx;
@@ -183,7 +184,8 @@
   height: 90rpx;
   border-radius: 50rpx;
   background-color: #efede1;
-  margin-bottom: 10rpx;
+  margin-top: 20rpx;
+  margin-bottom: 0rpx;
   margin-left: 15rpx;
   color: white;
   font-weight: 550;
@@ -197,7 +199,8 @@
   height: 90rpx;
   border-radius: 50rpx;
   background-color: #ebeed4;
-  margin-bottom: 10rpx;
+  margin-top:20rpx;
+  margin-bottom: 0rpx;
   margin-left: 15rpx;
   color: white;
   font-weight: 550;
@@ -211,7 +214,8 @@
   height: 90rpx;
   border-radius: 100rpx;
   background-color: #e7f0c8;
-  margin-bottom: 10rpx;
+  margin-top: 20rpx;
+  margin-bottom: 0rpx;
   margin-left: 15rpx;
   color: white;
   font-weight: 550;

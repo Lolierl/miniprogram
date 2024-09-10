@@ -21,7 +21,7 @@
 
 .user-text1{
   color: white;
-  font-weight: 550;
+  font-weight: 650;
   font-size: 40rpx;
   margin-bottom: 10rpx;
 }
@@ -31,6 +31,6 @@
   bottom: 60rpx;
   left: 300rpx;
   color: #c6e173;
-  font-weight: 550;
+  font-weight: 650;
   font-size: 40rpx;
 }

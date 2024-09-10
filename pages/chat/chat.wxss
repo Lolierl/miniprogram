@@ -20,7 +20,7 @@
 .title {
   display: flex;
   font-size: 42rpx;
-  font-weight: 550;
+  font-weight: 650;
   margin-top: 97rpx;
   margin-left: 277rpx;
   color: white;
@@ -34,7 +34,8 @@
 
 .chat-item {
   display: flex;
-  padding: 23rpx;
+  margin-left: 5rpx;
+  padding: 20rpx;
   border-bottom: 1px solid #eee;
   align-items: center;
 }
@@ -55,17 +56,23 @@
 }
 
 .nickname {
-  font-size: 40rpx;
-  font-weight: bold;
+  font-size: 30rpx;
+  font-weight: 550;
   color: #333;
 }
 
 .last-message {
-  font-size: 30rpx;
+  font-size: 22rpx;
   color: #999;
 }
 
 .time {
   font-size: 18rpx;
   color: #ccc;
+}
+
+.message-list {
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
 }

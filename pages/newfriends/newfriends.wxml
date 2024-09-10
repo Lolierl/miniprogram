@@ -1,14 +1,13 @@
 <!--pages/newfriends/newfriends.wxml-->
-
-<view class="back" bind:tap="toFriends">back</view>
-
+<scroll-view class="message-list" scroll-y="true" >
 
 <!-- 显示我发送的请求 -->
 <view class="wrap1">
   <view class="friend-item" wx:for="{{list}}" wx:key="index" wx:if="{{item.AuserPhone==myphone0&&item.status==0}}" >
     
-    <image class="friend-avatar" src="{{item.BuserFace}}" mode="aspectFill" />
-  
+    <view>
+      <image class="friend-avatar" src="{{item.BuserFace}}" mode="aspectFill" />
+    </view>
     <!-- <view>{{item.AuserPhone}}</view>
     <view>{{myphone0}}</view>
     <view>{{item.acount}}</view> -->
@@ -27,8 +26,9 @@
 <!-- 显示收到的请求 -->
 <view class="wrap2">
   <view class="friend-item2" wx:for="{{list}}" wx:key="index" wx:if="{{item.BuserPhone==myphone0&&item.status==0}}" >
-    
-    <image class="friend-avatar2" src="{{item.AuserFace}}" mode="aspectFill" />
+    <view>
+      <image class="friend-avatar2" src="{{item.AuserFace}}" mode="aspectFill" />
+    </view>
 
     <view class="friend-info">
       <text class="text1">[Request]</text>
@@ -48,8 +48,9 @@
 <!-- 显示已添加 -->
 <view class="wrap2">
   <view class="friend-item3" wx:for="{{list}}" wx:key="index" wx:if="{{item.BuserPhone==myphone0&&item.status==1}}" >
-    
-    <image class="friend-avatar2" src="{{item.AuserFace}}" mode="aspectFill" />
+    <view>
+      <image class="friend-avatar2" src="{{item.AuserFace}}" mode="aspectFill" />
+    </view>
 
     <view class="friend-info">
       <text class="text1">[Added]</text>
@@ -63,7 +64,9 @@
 
   <view class="friend-item3" wx:for="{{list}}" wx:key="index" wx:if="{{item.AuserPhone==myphone0&&item.status==1 }}">
     
-    <image class="friend-avatar2" src="{{item.BuserFace}}" mode="aspectFill" />
+    <view>
+      <image class="friend-avatar2" src="{{item.BuserFace}}" mode="aspectFill" />
+    </view>
 
     <view class="friend-info">
       <text class="text1">[Added]</text>
@@ -75,4 +78,8 @@
     </view>
   </view>
 </view>
+
+<view class="back" bind:tap="toFriends">back</view>
+
+</scroll-view>
 

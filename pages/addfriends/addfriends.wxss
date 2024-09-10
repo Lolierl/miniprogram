@@ -2,30 +2,30 @@
 
 .back{
   position: fixed;
-  bottom: 100rpx;
+  bottom: 300rpx;
   color: #c6e173;
   margin-left: 320rpx;
   font-size: 50rpx;
-  font-weight: 550;
+  font-weight: 650;
 }
 
 .search-wrap1{
   display: flex;
   flex-direction: row;
   border: 3px solid #c6e173;
-  border-radius: 50rpx;
-  width: 630rpx;
-  height: 80rpx;
+  border-radius: 100rpx;
+  width: 650rpx;
+  height: 100rpx;
   align-items: center;
-  margin: 200rpx 0 0 47rpx;
+  margin: 200rpx 0 0 50rpx;
   
 }
 
 .search-img{
-  width: 90rpx;
-  height: 90rpx;
-  margin-top: 8rpx;
-  margin-right: -4rpx;
+  width: 100rpx;
+  height: 100rpx;
+  margin-top:0rpx;
+  margin-right: 23rpx;
 }
 
 input{

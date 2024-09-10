@@ -7,7 +7,7 @@
   color: #c6e173;
   margin-left: 320rpx;
   font-size: 50rpx;
-  font-weight: 550;
+  font-weight: 650;
 }
 
 .wrap1{
@@ -17,17 +17,20 @@
 .friend-item {
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 650rpx;
   padding:16rpx;
-  margin-left: 20rpx;
+  /* margin-left: 10rpx; */
   margin-top: 20rpx;
-  border-radius: 60rpx;
+  margin-left: 50rpx;
+  border-radius: 100rpx;
   background-color: #f0e6ed;
 }
 .friend-info {
+  width: 200rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 
 /* 好友头像样式 */
@@ -45,19 +48,19 @@
 }
 
 .send-img {
-  margin-left: 320rpx;
+  margin-left: 230rpx;
   width: 70rpx;
   height: 70rpx;
 }
 
 .send-img2 {
-  margin-left: 30rpx;
+  margin-left: 50rpx;
   width: 70rpx;
   height: 70rpx;
 }
 
 .send-img3 {
-  margin-left: 340rpx;
+  margin-left: 225rpx;
   width: 80rpx;
   height: 80rpx;
 }
@@ -76,11 +79,11 @@
 .friend-item2 {
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 650rpx;
   padding:16rpx;
-  margin-left: 20rpx;
+  margin-left: 50rpx;
   margin-top: 20rpx;
-  border-radius: 60rpx;
+  border-radius: 100rpx;
   background-color: #e5f0c6;
 }
 
@@ -95,16 +98,22 @@
   font-size: 40rpx;
   font-weight: 550;
   color: #c6e173;
-  margin-left: 170rpx;
+  margin-left: 60rpx;
 }
 
 .friend-item3 {
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 650rpx;
   padding:16rpx;
-  margin-left: 20rpx;
+  margin-left: 50rpx;
   margin-top: 20rpx;
-  border-radius: 60rpx;
+  border-radius: 100rpx;
   background-color: #f0f0f0;
+}
+
+.message-list {
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
 }
