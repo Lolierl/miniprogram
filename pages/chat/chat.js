@@ -1,4 +1,4 @@
-// pages/chat/chat.js
+
 Page({
   data: {
     chatList: []
@@ -14,9 +14,12 @@ Page({
     const db = wx.cloud.database();
     let currentUserNum = wx.getStorageSync('userInfo').num
     db.collection('chat_users').where(
-      db.command.or([
-        { Auser: currentUserNum },
-        { Buser: currentUserNum }
+      db.command.and([
+        db.command.or([
+          { Auser: currentUserNum },
+          { Buser: currentUserNum }
+        ]),
+        { status: 1 }
       ])
     ).orderBy('lastMessageTime', 'desc')
     .get().then(res => {
