@@ -773,7 +773,7 @@ Page({
     }
     for (let i = 0; i < 2; i++) {
       const bubble = {
-        left: `${Math.random() * 60}% `,
+        left: `${Math.random() * 80}% `,
         duration: Math.random() * 2 + 1,
         text1: text
       };
@@ -847,7 +847,7 @@ showBubblesForUserB(bubbleContent) {
   const bubbles = this.data.bubbles;
   for (let i = 0; i < 2; i++) {
     const bubble = {
-      left: `${Math.random() * 60}% `,
+      left: `${Math.random() * 80}% `,
       duration: Math.random() * 2 + 1,
       text1: bubbleContent
     };

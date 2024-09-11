@@ -29,7 +29,7 @@
   padding: 20rpx;
   text-align: center;
   width: 100%;
-  margin-top: -118rpx;
+  margin-top: -123rpx;
   font-size: 42rpx;
   font-weight: 550;
   color: white;
@@ -82,8 +82,8 @@
   display: flex;
   flex-direction: column;
   max-width: 70%; /* 设定最大宽度 */
-  margin-top: 15rpx;
-  margin-bottom: 20rpx;
+  margin-top: 12rpx;
+  margin-bottom: 12rpx;
   padding: 20rpx;
   border-radius: 50rpx;
   position: relative;
@@ -234,8 +234,8 @@
   background-color: #f0e6ed;
   border-radius: 100rpx;
   margin-top: 340rpx;
-  position: absolute;
-  bottom: 270rpx; /* 调整气泡到底部 */
+  position: fixed;
+  bottom: 570rpx; /* 调整气泡到底部 */
   opacity: 0; /* 初始状态不显示 */
   animation: bubble-float 4s forwards; /* 动画名称和持续时间 */
   padding: 10px; /* 内部填充 */
@@ -257,15 +257,11 @@
 }
 
 .bubbles-container {
-  position: relative;
   width: 100%;
   height: 0rpx; /* 根据实际需要调整 */
   
 }
 
-#bubbleButton {
-  position: relative; /* 确保按钮可以相对于气泡定位 */
-}
 
 .bubbletext{
   color: white;

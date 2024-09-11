@@ -43,8 +43,8 @@
 
 /* 好友昵称样式 */
 .friend-name {
-  
-  font-size: 30rpx;
+  font-weight: 550;
+  font-size: 28rpx;
   color: grey;
 }
 
