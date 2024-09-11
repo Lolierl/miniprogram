@@ -3,7 +3,8 @@ Page({
   data: {
     chatMessages: [],
     messageText: '',
-    lastMessageId: '', 
+    messageLength: 0, 
+    scrollMessageId: '', 
     currentUserNum: null, // 本人 num
     otherUserNum: null,   // 对方 num
     otherUserInfo: null,
@@ -60,59 +61,71 @@ Page({
     return wx.getStorageSync('userInfo').num;
   },
 
-  loadChatMessages: async function(currentUserNum, otherUserNum) {
+  loadChatMessages: async function(currentUserNum, otherUserNum, addLength = 0, scrollToBottom = true) {
     const db = wx.cloud.database();
     const _ = db.command;
     const BATCH_SIZE = 20; // 每次获取的记录数
-    let allMessages = [];  // 存储所有消息
-    let skip = 0;          // 从第几条记录开始获取
+    let allMessages = [], skip = 0; 
     let hasMore = true;    // 是否还有更多记录
-
+    let scrollMessageId = ''; 
+    const currentLength = this.data.messageLength; 
+    
+    if(!scrollToBottom)
+    {
+      const chatMessages = this.data.chatMessages
+      if(chatMessages.length > 0)scrollMessageId = "message-" + chatMessages[0]._id
+    }
     const notificationsRes = await db.collection('notifications').where({
       userNum: otherUserNum,    // 聊天对象用户
       chatUserNum: currentUserNum,  // 当前用户
       isRead: false               // 未读消息
     }).get();
     const unreadMessageIds = notificationsRes.data.map(notification => notification.messageId);
-    while (hasMore) {
-        try {
-            const res = await db.collection('messages').where(
-              _.or([
-                { senderNum: currentUserNum, receiverNum: otherUserNum },
-                { senderNum: otherUserNum, receiverNum: currentUserNum }
-              ])
-            ).orderBy('timestamp', 'asc')
-             .skip(skip)
-             .limit(BATCH_SIZE)
-             .get();
-            
-            if (res.data.length > 0) {
-                res.data.forEach(message => {
-                    message.isUnread = unreadMessageIds.includes(message._id);
-                });
-                allMessages = allMessages.concat(res.data);
-                skip += BATCH_SIZE;
-                if (res.data.length < BATCH_SIZE) {
-                    hasMore = false; // 没有更多记录了
-                }
-            } else {
-                hasMore = false; // 没有更多记录了
+    while(hasMore)
+    {
+      try {
+        // 获取最后 BATCH_SIZE 条记录，并根据 skip 加载更多
+        const res = await db.collection('messages').where(
+          _.or([
+            { senderNum: currentUserNum, receiverNum: otherUserNum },
+            { senderNum: otherUserNum, receiverNum: currentUserNum }
+          ])
+        ).orderBy('timestamp', 'desc') // 按时间降序排序
+        .skip(skip)  // 跳过之前已经加载的消息
+        .limit(BATCH_SIZE)  // 每次加载 BATCH_SIZE 条
+        .get();
+        console.log(skip, res.data.length, currentLength, addLength)
+        if (res.data.length > 0) {
+            res.data.forEach(message => {
+                message.isUnread = unreadMessageIds.includes(message._id);
+            });
+            // 将新获取的消息插入到现有消息之前
+            allMessages = res.data.reverse().concat(allMessages);
+            skip += res.data.length;
+            if(skip >= currentLength + addLength)
+              break; 
+            // 如果获取的消息数小于 BATCH_SIZE，表示没有更多记录
+            if (res.data.length < BATCH_SIZE) {
+                hasMore = false;
             }
-        } catch (error) {
-            console.error(error);
-            hasMore = false; // 如果发生错误，停止循环
+        } else {
+            hasMore = false;
         }
+      } catch (error) {
+        console.error(error);
+        hasMore = false; // 如果发生错误，停止加载
+      } 
     }
-    let lastMessageId = ''
-    if (allMessages.length > 0)
-      lastMessageId = "message-" + allMessages[allMessages.length - 1]._id
     this.setData({
-      chatMessages: allMessages
+      chatMessages: allMessages, 
+      messageLength: skip, 
     }, () => {
-      // 确保数据设置完成后，设置 lastMessageId 进行滚动
-        this.setData({
-          lastMessageId: lastMessageId
-        });
+      if (scrollToBottom && allMessages.length > 0) {
+          scrollMessageId = "message-" + allMessages[allMessages.length - 1]._id
+      }
+      this.setData({
+        scrollMessageId: scrollMessageId
+      })
     });
   }, 
   onInput: function(e) {
@@ -143,6 +156,11 @@ Page({
       })
     }).catch(console.error);
   },
+  onScrollToUpper: function() {
+    // 监听滚动到顶部事件，加载更多消息
+    const { currentUserNum, otherUserNum} = this.data;
+    this.loadChatMessages(currentUserNum, otherUserNum, 20, false);
+},
   chooseImage: function() {
     wx.chooseImage({
       count: 1,
@@ -230,11 +248,11 @@ Page({
       }
     });
   },
-  replyWithImage: function(messageId, imageFileID) {
+  replyWithImage: async function(messageId, imageFileID) {
     const { currentUserNum, otherUserNum } = this.data;
     const db = wx.cloud.database();
     // 发送回复的图片
-    db.collection('messages').add({
+    const res = await db.collection('messages').add({
       data: {
         senderNum: currentUserNum,
         receiverNum: otherUserNum,
@@ -243,20 +261,23 @@ Page({
         imageStatus: 'new image', 
         timestamp: Date.now()
       }
-    }).then(res => {
-      this.updateChat('[New Image]', res._id);
-      // 更新原先图片的状态为"replied message"
-      return db.collection('messages').doc(messageId).update({
-        data: {
-          imageStatus: 'replied message'
-        }
-      });
-    }).then(() => {
-      const options = {
-        otherUserNum: this.data.otherUserNum
-      };
-      this.onLoad(options); 
-    }).catch(console.error);
+    });
+
+    // 更新原先图片的状态为 "replied message"
+    await db.collection('messages').doc(messageId).update({
+      data: {
+        imageStatus: 'replied message'
+      }
+    });
+
+    // 更新聊天记录
+    await this.updateChat('[New Image]', res._id);
+
+    // 重新加载页面数据
+    const options = {
+      otherUserNum: this.data.otherUserNum
+    };
+    this.onLoad(options); 
   },
   navigateBack: function() {
     wx.navigateBack();

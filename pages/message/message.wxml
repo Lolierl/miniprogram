@@ -9,7 +9,7 @@
   </view>
  
   <!-- 消息列表 -->
-  <scroll-view class="message-list" scroll-y="true" scroll-into-view="{{lastMessageId}}">
+  <scroll-view class="message-list" scroll-y="true" scroll-into-view="{{scrollMessageId}}" bindscrolltoupper="onScrollToUpper">
     <block wx:for="{{chatMessages}}" wx:key="_id" >
         <view id="message-{{item._id}}" class="message-container">
           <view class="message-item {{item.senderNum == currentUserNum ? 'sent' : 'received'}}">
