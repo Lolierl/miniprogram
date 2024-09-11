@@ -4,6 +4,7 @@ Page({
     chatMessages: [],
     messageText: '',
     messageLength: 0, 
+    scrolledToTop: false, 
     scrollMessageId: '', 
     currentUserNum: null, // 本人 num
     otherUserNum: null,   // 对方 num
@@ -94,7 +95,6 @@ Page({
         .skip(skip)  // 跳过之前已经加载的消息
         .limit(BATCH_SIZE)  // 每次加载 BATCH_SIZE 条
         .get();
-        console.log(skip, res.data.length, currentLength, addLength)
         if (res.data.length > 0) {
             res.data.forEach(message => {
                 message.isUnread = unreadMessageIds.includes(message._id);
@@ -116,6 +116,8 @@ Page({
         hasMore = false; // 如果发生错误，停止加载
       } 
     }
+    if(!hasMore)
+      await this.setData({scrolledToTop: true})
     this.setData({
       chatMessages: allMessages, 
       messageLength: skip, 
@@ -158,8 +160,11 @@ Page({
   },
   onScrollToUpper: function() {
     // 监听滚动到顶部事件，加载更多消息
-    const { currentUserNum, otherUserNum} = this.data;
-    this.loadChatMessages(currentUserNum, otherUserNum, 20, false);
+    if(!this.data.scrolledToTop)
+    {
+      const { currentUserNum, otherUserNum} = this.data;
+      this.loadChatMessages(currentUserNum, otherUserNum, 20, false);
+    }
 },
   chooseImage: function() {
     wx.chooseImage({
