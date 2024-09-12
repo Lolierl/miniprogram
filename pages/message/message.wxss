@@ -273,8 +273,10 @@
   justify-content: center;
 }
 .unread-indicator {
+  position: absolute;
+  top: 10rpx; 
+  right: 10rpx;
   color: red;
   font-size: 24rpx;
-  margin-left: 10rpx;
   font-weight: bold;
 }
