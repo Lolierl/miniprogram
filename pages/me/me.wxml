@@ -1,14 +1,22 @@
 <image src="/image/cover1.png" class="cover1-img"></image>
 
 <view class="user-wrap">
-  <view><image src="{{userInfo.avatarUrl}}" class="user-avatar"/></view>
+  <view>
+    <image src="{{userInfo.avatarUrl}}" class="user-avatar"/>
+  </view>
+
   <view>
     <view class="user-text1">{{userInfo.nickName}}</view>
   </view>
+
   <view>
     <view class="user-text1">ID: {{userInfo.num}}</view>
   </view>
+
 </view>
+
+
+<button class="changeavatar" open-type="chooseAvatar" bindchooseavatar="ChangeAvatar">ChangeAvatar</button>
 
 <view class="user-text2" bind:tap="logout">Log out</view>
 
