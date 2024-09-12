@@ -15,7 +15,7 @@
           <view class="message-item {{item.senderNum == currentUserNum ? 'sent' : 'received'}}">
             <text wx:if="{{item.messageType === 'text'}}" class="message-content">{{item.message}}</text>
             <block wx:if="{{item.messageType === 'image'}}">
-              <image class="message-image {{item.imageStatus === 'new image' && item.receiverNum === currentUserNum ? 'blurred' : ''}}" src="{{item.message}}" mode="aspectFill" data-src="{{item.message}}" bindtap="previewImage" />
+              <image class="message-image {{item.imageStatus === 'new image' && item.receiverNum === currentUserNum ? 'blurred' : ''}}" src="{{item.message}}" mode="aspectFill" data-src="{{item.message}}" bindtap="{{item.imageStatus !== 'new image' || item.receiverNum !== currentUserNum ? 'previewImage' : ''}}" />
               <view wx:if="{{item.imageStatus === 'new image' && item.receiverNum === currentUserNum}}" class="exchange-button" bindtap="exchangeImage" data-messageId="{{item._id}}">Exchange</view>
             </block>
             <text wx:if="{{item.isUnread && item.senderNum == currentUserNum}}" class="unread-indicator">Unread</text>

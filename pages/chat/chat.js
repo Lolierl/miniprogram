@@ -5,11 +5,43 @@ Page({
   },
 
   onLoad: function() {
+    const db = wx.cloud.database();
+    let currentUserNum = wx.getStorageSync('userInfo').num
     this.loadChatList();
+    this.chatWatcher = db.collection('chat_users').where(
+        db.command.or([
+          { Auser: currentUserNum },
+          { Buser: currentUserNum }
+      ])
+    ).watch({
+      onChange: snapshot => {
+        this.loadChatList();
+      }, 
+      onError: (err) => { // onError 必须是一个函数
+        console.error('Message watcher error:', err);
+      }})
+      this.notificationWatcher = db.collection('notifications').where(
+        {userNum: currentUserNum, 
+          isRead: false}
+    ).watch({
+      onChange: snapshot => {
+        this.loadChatList();
+      }, 
+      onError: (err) => { // onError 必须是一个函数
+        console.error('Message watcher error:', err);
+      }})
   },
   onShow: function() {
-    this.loadChatList();
+    this.onLoad();
   },
+  onUnload: function() {
+    if (this.chatWatcher) {
+      this.chatWatcher.close();
+    }
+    if(this.notificationWatcher){
+      this.notificationWatcher.close();
+    }
+  }, 
   loadChatList: function() {
     const db = wx.cloud.database();
     let currentUserNum = wx.getStorageSync('userInfo').num
@@ -74,18 +106,8 @@ Page({
     const currentUserNum = wx.getStorageSync('userInfo').num
     const otherUserNum = e.currentTarget.dataset.otherusernum;
     const db = wx.cloud.database();
-    db.collection('notifications').where({
-      userNum: currentUserNum,
-      chatUserNum: otherUserNum,
-      isRead: false
-    }).update({
-      data: {
-        isRead: true
-      }
-    }).then(() => {
-      wx.navigateTo({
-        url: `/pages/message/message?otherUserNum=${otherUserNum}`
-      });
-    }).catch(console.error);
+    wx.navigateTo({
+      url: `/pages/message/message?otherUserNum=${otherUserNum}`
+    });
   }
 });
