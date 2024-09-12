@@ -6,7 +6,7 @@
   <image src="/image/cover3.png" class="cover"/>
 </view>
 
-<scroll-view class="message-list" scroll-y="true" >
+<scroll-view class="message-list" scroll-y="true">
 <!-- <scroll-view scroll-y="true"> -->
   <block wx:for="{{chatList}}" wx:key="index" >
     <view class="chat-item" bindtap="navigateToMessage" data-otherUserNum="{{item.otherUserInfo.num}}">

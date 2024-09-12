@@ -34,6 +34,9 @@ Page({
   onShow: function() {
     this.onLoad();
   },
+  onPullDownRefresh() {
+    this.loadChatList();
+  },
   onUnload: function() {
     if (this.chatWatcher) {
       this.chatWatcher.close();
