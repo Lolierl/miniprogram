@@ -30,6 +30,7 @@ Page({
     const currentUserNum = this.getCurrentUserNum(); // 获取当前用户的 num
     const otherUserNum = Number(options.otherUserNum);
     const db = wx.cloud.database();
+    const _ = db.command;
     this.setData({
       currentUserNum: currentUserNum,
       otherUserNum: otherUserNum
@@ -41,7 +42,31 @@ Page({
         this.setData({ otherUserInfo: res.data[0] });
       }
     });
-    this.loadChatMessages(currentUserNum, otherUserNum);
+    this.loadChatMessages(currentUserNum, otherUserNum, 0, false, true);
+    this.messageWatcher = db.collection('messages').where(
+      _.or([
+        { senderNum: currentUserNum, receiverNum: otherUserNum },
+        { senderNum: otherUserNum, receiverNum: currentUserNum }
+      ])
+    ).watch({
+      onChange: snapshot => {
+        this.loadChatMessages(currentUserNum, otherUserNum, 0, false, false);
+      }, 
+      onError: (err) => { // onError 必须是一个函数
+        console.error('Message watcher error:', err);
+      }})
+      this.notificationWatcher = db.collection('notifications').where(
+        _.or([
+          { userNum: otherUserNum, chatUserNum: currentUserNum },
+          { chatUserNum: otherUserNum, userNum: currentUserNum }
+        ])
+      ).watch({
+        onChange: snapshot => {
+          this.loadChatMessages(currentUserNum, otherUserNum, 0, false, false);
+        }, 
+        onError: (err) => { // onError 必须是一个函数
+          console.error('Message watcher error:', err);
+        }})
     this.extractFirstChar1();
     this.extractFirstChar2();
     this.extractFirstChar3();
@@ -52,7 +77,14 @@ Page({
     this.findbubbleText3();
     this.findbubbleText4();
   },
-
+  onUnload: function() {
+    if (this.messageWatcher) {
+      this.messageWatcher.close();
+    }
+    if(this.notificationWatcher){
+      this.notificationWatcher.close();
+    }
+  }, 
   onShow: function() {
     // 页面显示时调用函数，触发气泡特效
     this.triggerBubblesForUserB();
@@ -62,7 +94,7 @@ Page({
     return wx.getStorageSync('userInfo').num;
   },
 
-  loadChatMessages: async function(currentUserNum, otherUserNum, addLength = 0, scrollToBottom = true) {
+  loadChatMessages: async function(currentUserNum, otherUserNum, addLength, scrollToTop, scrollToBottom) {
     const db = wx.cloud.database();
     const _ = db.command;
     const BATCH_SIZE = 20; // 每次获取的记录数
@@ -70,8 +102,16 @@ Page({
     let hasMore = true;    // 是否还有更多记录
     let scrollMessageId = ''; 
     const currentLength = this.data.messageLength; 
-    
-    if(!scrollToBottom)
+    db.collection('notifications').where({
+      userNum: currentUserNum,
+      chatUserNum: otherUserNum,
+      isRead: false
+    }).update({
+      data: {
+        isRead: true
+      }
+    })
+    if(scrollToTop)
     {
       const chatMessages = this.data.chatMessages
       if(chatMessages.length > 0)scrollMessageId = "message-" + chatMessages[0]._id
@@ -118,14 +158,15 @@ Page({
     }
     if(!hasMore)
       await this.setData({scrolledToTop: true})
+    if(scrollToTop)
+      await this.setData({messageLength: skip})
     this.setData({
       chatMessages: allMessages, 
-      messageLength: skip, 
     }, () => {
       if (scrollToBottom && allMessages.length > 0) {
           scrollMessageId = "message-" + allMessages[allMessages.length - 1]._id
       }
-      this.setData({
+      if(scrollToBottom || scrollToTop)this.setData({
         scrollMessageId: scrollMessageId
       })
     });
@@ -151,10 +192,10 @@ Page({
     }).then(res => {
       this.updateChat(messageText, res._id).then(() => {
         this.setData({ messageText: '' });
-        const options = {
+        /*const options = {
           otherUserNum: this.data.otherUserNum
         };
-        this.onLoad(options); 
+        this.onLoad(options); */
       })
     }).catch(console.error);
   },
@@ -163,7 +204,7 @@ Page({
     if(!this.data.scrolledToTop)
     {
       const { currentUserNum, otherUserNum} = this.data;
-      this.loadChatMessages(currentUserNum, otherUserNum, 20, false);
+      this.loadChatMessages(currentUserNum, otherUserNum, 20, true, false);
     }
 },
   chooseImage: function() {
@@ -207,11 +248,7 @@ Page({
         timestamp: Date.now()
       }
     }).then(res => {
-      this.updateChat('[New Image]', res._id).then(() => {
-      const options = {
-        otherUserNum: this.data.otherUserNum
-      };
-      this.onLoad(options); })
+      this.updateChat('[New Image]', res._id)
     }).catch(console.error);
   },
   previewImage: function(e) {
@@ -279,10 +316,10 @@ Page({
     await this.updateChat('[New Image]', res._id);
 
     // 重新加载页面数据
-    const options = {
+    /*const options = {
       otherUserNum: this.data.otherUserNum
     };
-    this.onLoad(options); 
+    this.onLoad(options); */
   },
   navigateBack: function() {
     wx.navigateBack();
