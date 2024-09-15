@@ -18,12 +18,7 @@ Page({
     firstChar2: '',
     firstChar3: '',
     firstChar4: '',
-
     bubbles: [],
-    bubbleText1:'',
-    bubbleText2:'',
-    bubbleText3:'',
-    bubbleText4:'',
 
     selectedEmoji: null, // 当前选中的表情
     showEmojiPopup: false,
@@ -86,12 +81,18 @@ Page({
     this.extractFirstChar2();
     this.extractFirstChar3();
     this.extractFirstChar4();
-
-    this.findbubbleText1();
-    this.findbubbleText2();
-    this.findbubbleText3();
-    this.findbubbleText4();
-
+    this.phraseMsgWatcher = db.collection('PhraseMsg').where(
+      _.or([
+        { num1: currentUserNum, num2: otherUserNum },
+        { num1: otherUserNum, num2: currentUserNum }
+      ])
+    ).watch({
+      onChange: snapshot => {
+        this.triggerBubblesForUserB();
+      }, 
+      onError: (err) => { // onError 必须是一个函数
+        console.error('Message watcher error:', err);
+      }})
   },
   onUnload: function() {
     if (this.messageWatcher) {
@@ -99,6 +100,9 @@ Page({
     }
     if(this.notificationWatcher){
       this.notificationWatcher.close();
+    }
+    if(this.phraseMsgWatcher){
+      this.phraseMsgWatcher.close(); 
     }
   }, 
   onShow: function() {
@@ -431,7 +435,10 @@ Page({
           this.setData({
             textContent1: res.content
           });
-
+          const firstChar = res.content.charAt(0);
+          this.setData({
+            firstChar1: firstChar
+          });
           db.collection('Phrase').where({ num: 1, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
@@ -452,12 +459,9 @@ Page({
             }
           });
         }
+        
       }
     });
-    const options = {
-      otherUserNum: this.data.otherUserNum
-    };
-    this.onLoad(options); 
   },
 
   changePhrase2(){
@@ -473,7 +477,10 @@ Page({
           this.setData({
             textContent2: res.content
           });
-
+          const firstChar = res.content.charAt(0);
+          this.setData({
+            firstChar2: firstChar
+          });
           db.collection('Phrase').where({ num: 2, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
@@ -496,10 +503,6 @@ Page({
         }
       }
     });
-    const options = {
-      otherUserNum: this.data.otherUserNum
-    };
-    this.onLoad(options); 
   },
 
   changePhrase3(){
@@ -515,7 +518,10 @@ Page({
           this.setData({
             textContent3: res.content
           });
-
+          const firstChar = res.content.charAt(0);
+          this.setData({
+            firstChar3: firstChar
+          });
           db.collection('Phrase').where({ num: 3, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
@@ -538,10 +544,6 @@ Page({
         }
       }
     });
-    const options = {
-      otherUserNum: this.data.otherUserNum
-    };
-    this.onLoad(options); 
   },
 
   changePhrase4(){
@@ -557,7 +559,10 @@ Page({
           this.setData({
             textContent4: res.content
           });
-
+          const firstChar = res.content.charAt(0);
+          this.setData({
+            firstChar4: firstChar
+          });
           db.collection('Phrase').where({ num: 4, userNum:currentUserNum}).count().then(countRes => {
             if (countRes.total > 0) {
               // 如果记录存在，则更新
@@ -580,10 +585,6 @@ Page({
         }
       }
     });
-    const options = {
-      otherUserNum: this.data.otherUserNum
-    };
-    this.onLoad(options); 
   },
 
   // 查找口头禅内容
@@ -595,6 +596,10 @@ Page({
       const content = res.data[0].textContent;
       if (content && content.length > 0) {
         // 取第一个字
+        
+        this.setData({
+          textContent1: content
+        });
         const firstChar = content.charAt(0);
         this.setData({
           firstChar1: firstChar
@@ -604,25 +609,6 @@ Page({
       console.error('查询失败:', err);
     });
   },
-
-  findbubbleText1(){
-    const db = wx.cloud.database();
-    const currentUserNum = this.getCurrentUserNum();
-    db.collection('Phrase').where({ userNum: currentUserNum, num: 1 }).get().then(res => {
-      if (res.data.length > 0) {
-        const content = res.data[0].textContent;
-        if (content && content.length > 0) {
-          // 取整个textContent
-          this.setData({
-            bubbleText1: content
-          });
-        }
-      }
-    }).catch(err => {
-      console.error('查询失败:', err);
-    });
-  },
-
   extractFirstChar2(){
     const db = wx.cloud.database();
     const currentUserNum = this.getCurrentUserNum();
@@ -631,29 +617,14 @@ Page({
       const content = res.data[0].textContent;
       if (content && content.length > 0) {
         // 取第一个字
+        this.setData({
+          textContent2: content
+        });
         const firstChar = content.charAt(0);
         this.setData({
           firstChar2: firstChar
         });
     }}
-    }).catch(err => {
-      console.error('查询失败:', err);
-    });
-  },
-
-  findbubbleText2(){
-    const db = wx.cloud.database();
-    const currentUserNum = this.getCurrentUserNum();
-    db.collection('Phrase').where({ userNum: currentUserNum, num: 2 }).get().then(res => {
-      if (res.data.length > 0) {
-        const content = res.data[0].textContent;
-        if (content && content.length > 0) {
-          // 取整个textContent
-          this.setData({
-            bubbleText2: content
-          });
-        }
-      }
     }).catch(err => {
       console.error('查询失败:', err);
     });
@@ -667,29 +638,14 @@ Page({
       const content = res.data[0].textContent;
       if (content && content.length > 0) {
         // 取第一个字
+        this.setData({
+          textContent3: content
+        });
         const firstChar = content.charAt(0);
         this.setData({
           firstChar3: firstChar
         });
     }}
-    }).catch(err => {
-      console.error('查询失败:', err);
-    });
-  },
-
-  findbubbleText3(){
-    const db = wx.cloud.database();
-    const currentUserNum = this.getCurrentUserNum();
-    db.collection('Phrase').where({ userNum: currentUserNum, num: 3 }).get().then(res => {
-      if (res.data.length > 0) {
-        const content = res.data[0].textContent;
-        if (content && content.length > 0) {
-          // 取整个textContent
-          this.setData({
-            bubbleText3: content
-          });
-        }
-      }
     }).catch(err => {
       console.error('查询失败:', err);
     });
@@ -703,6 +659,9 @@ Page({
       const content = res.data[0].textContent;
       if (content && content.length > 0) {
         // 取第一个字
+        this.setData({
+          textContent4: content
+        });
         const firstChar = content.charAt(0);
         this.setData({
           firstChar4: firstChar
@@ -713,29 +672,11 @@ Page({
     });
   },
 
-  findbubbleText4(){
-    const db = wx.cloud.database();
-    const currentUserNum = this.getCurrentUserNum();
-    db.collection('Phrase').where({ userNum: currentUserNum, num: 4 }).get().then(res => {
-      if (res.data.length > 0) {
-        const content = res.data[0].textContent;
-        if (content && content.length > 0) {
-          // 取整个textContent
-          this.setData({
-            bubbleText4: content
-          });
-        }
-      }
-    }).catch(err => {
-      console.error('查询失败:', err);
-    });
-  },
-
   // 口头禅气泡
   createBubbles1() {
     const db = wx.cloud.database();
     const bubbles = this.data.bubbles;
-    const text = this.data.bubbleText1;
+    const text = this.data.textContent1;
     const userA = this.data.currentUserNum;// 发出者的信息
     const userB = this.data.otherUserNum; // 用户B的信息
   
@@ -784,7 +725,7 @@ Page({
   createBubbles2() {
     const db = wx.cloud.database();
     const bubbles = this.data.bubbles;
-    const text = this.data.bubbleText2;
+    const text = this.data.textContent2;
     const userA = this.data.currentUserNum;// 发出者的信息
     const userB = this.data.otherUserNum; // 用户B的信息
   
@@ -832,7 +773,7 @@ Page({
   createBubbles3() {
     const db = wx.cloud.database();
     const bubbles = this.data.bubbles;
-    const text = this.data.bubbleText3;
+    const text = this.data.textContent3;
     const userA = this.data.currentUserNum;// 发出者的信息
     const userB = this.data.otherUserNum; // 用户B的信息
   
@@ -880,7 +821,7 @@ Page({
   createBubbles4() {
     const db = wx.cloud.database();
     const bubbles = this.data.bubbles;
-    const text = this.data.bubbleText4;
+    const text = this.data.textContent4;
     const userA = this.data.currentUserNum;// 发出者的信息
     const userB = this.data.otherUserNum; // 用户B的信息
   
