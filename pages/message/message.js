@@ -882,11 +882,9 @@ Page({
 
 
   // 用户B进入聊天页面时触发的函数
-triggerBubblesForUserB() {
+async triggerBubblesForUserB() {
   const db = wx.cloud.database();
   const userBNum = this.data.currentUserNum; // 用户B的num
-
-  // 查询数据库中num2与用户B的num相同且status为0的数据，按时间顺序排列
   db.collection('PhraseMsg')
     .where({
       num2: userBNum,
@@ -906,7 +904,7 @@ triggerBubblesForUserB() {
                 console.log('删除记录成功', removeRes);
               },
               fail: removeErr => {
-                console.error('删除记录失败', removeErr);
+                //console.error('删除记录失败', removeErr);
               }
             });
           });
