@@ -22,8 +22,8 @@
               bindtap="{{item.imageStatus !== 'new image' || item.receiverNum !== currentUserNum ? 'previewImage' : ''}}" 
               bindlongpress="{{item.imageStatus !== 'new image' &&item.receiverNum === currentUserNum ? 'showEmojiPopup' :''}}" 
               data-message-id="{{item._id}}"/>
-              <text wx:if="{{item.emoji}}">{{item.emoji}}</text>
-              <text wx:if="{{item.selectedEmoji}}" class="selected-emoji">{{item.selectedEmoji}}</text>
+              <text class="selected-emoji" wx:if="{{item.emoji}}">{{item.emoji}}</text>
+              <!-- <text wx:if="{{item.selectedEmoji}}" class="selected-emoji">{{item.selectedEmoji}}</text> -->
               <view wx:if="{{showEmojiPopup && selectedImageId === item._id}}" class="emoji-popup" >
                 <block wx:for="{{emojis}}" wx:key="index">
                   <text class="emoji" data-emoji="{{item}}" bindtap="selectEmoji">{{item}}</text>

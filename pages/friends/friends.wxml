@@ -1,7 +1,7 @@
 <!--pages/friends/friends.wxml-->
 
 <!-- <scroll-view  scroll-y="true"> -->
-<scroll-view class="message-list" scroll-y="true" >
+<!-- <scroll-view class="message-list" scroll-y="true" > -->
 <!-- 加好友入口 -->
 <view class="add-wrap1" bind:tap="toAddfriends">
   <image src="/image/add.png" class="add-img" mode=""/>
@@ -38,5 +38,5 @@
 </view>
 
 <image src="/image/cover3.png" class="cover2"/>
-</scroll-view>
+<!-- </scroll-view> -->
 <!-- </scroll-view> -->

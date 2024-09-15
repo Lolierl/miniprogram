@@ -6,12 +6,20 @@
   flex-direction: column;
   align-items: center;
   background-color: #ecd6eb;
+  padding-bottom: 160rpx; 
 }
 .title {
   font-size: 42rpx;
   font-weight: 650;
   margin-bottom: 40rpx;
   color: white;
+}
+.friend-list {
+  flex: 1;
+  height: 300rpx; /* 根据实际情况调整 */
+  overflow: scroll;
+  overflow-y: auto;
+  /*padding-bottom: 160rpx; */
 }
 /* 单个好友项的样式 */
 .friend-item {

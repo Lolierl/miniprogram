@@ -8,7 +8,13 @@
   <view>
     <image src="/image/start1.png" class="intro"/>
   </view>
+  <view>
+    <image src="/image/help.png" class="intro"/>
+  </view>
   <image src="/image/cover3.png" class="cover"/>
+  <view class="wrap3">
+    <text class="text">   </text>
+  </view>
 </view>
 
 <view class="back" bind:tap="tome">back</view>
