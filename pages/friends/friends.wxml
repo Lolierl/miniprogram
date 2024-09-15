@@ -19,32 +19,22 @@
 <view class="container">
   <text class="title">My Friends</text>
 
-  
-  <block wx:for="{{friends}}" wx:key="index" >
-    <!-- <view>{{item.BuserPhone}}</view>
-    <view>{{myphone0}}</view> -->
-    <view class="friend-item" wx:if="{{item.BuserPhone==myphone0}}" bind:tap="navigateToMessage"
-    data-otherUserNum="{{item.Auser}}">
-      <image class="friend-avatar" src="{{item.AuserFace}}" mode="aspectFill" />
-      <view class="friend-info">
-        <text class="friend-name">{{item.AuserName}}</text>
+  <scroll-view class="friend-list" scroll-y="true">
+    <block wx:for="{{friends}}" wx:key="index" >
+      <!-- <view>{{item.BuserPhone}}</view>
+      <view>{{myphone0}}</view> -->
+      <view class="friend-item" wx bind:tap="navigateToMessage"
+      data-otherUserNum="{{item.num}}">
+        <image class="friend-avatar" src="{{item.avatarUrl}}" mode="aspectFill" />
+        <view class="friend-info">
+          <text class="friend-name">{{item.nickName}}</text>
+        </view>
+        <view> 
+          <image src="/image/chat.png" class="gochat1" />
+        </view>
       </view>
-      <view> 
-        <image src="/image/chat.png" class="gochat1" />
-      </view>
-    </view>
-
-    <view class="friend-item" wx:if="{{item.AuserPhone==myphone0}}" bind:tap="navigateToMessage" data-otherUserNum="{{item.Buser}}">
-      <image class="friend-avatar" src="{{item.BuserFace}}" mode="aspectFill" />
-      <view class="friend-info">
-        <text class="friend-name">{{item.BuserName}}</text>
-      </view>
-      <view> 
-        <image src="/image/chat.png" class="gochat1" />
-      </view>
-    </view>
-
-  </block>
+    </block>
+    </scroll-view>
 </view>
 
 <image src="/image/cover3.png" class="cover2"/>

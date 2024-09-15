@@ -36,8 +36,8 @@
 
             </block>
 
-            <text wx:if="{{item.isUnread && item.senderNum == currentUserNum}}" class="unread-indicator">Unread</text>
-            
+            <text wx:if="{{item.messageType === 'text' && item.isUnread && item.senderNum == currentUserNum}}" class="unread-indicator">Unread</text>
+            <text wx:if="{{item.messageType === 'image' && item.imageStatus === 'new image' && item.senderNum == currentUserNum}}" class="unread-indicator">Unexchanged</text>
           </view>
           
         </view>
