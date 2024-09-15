@@ -24,6 +24,21 @@ Page({
     bubbleText2:'',
     bubbleText3:'',
     bubbleText4:'',
+
+    selectedEmoji: null, // 当前选中的表情
+    showEmojiPopup: false,
+    emojiPosition: { top: 0, left: 0 },
+    emojis: ['😻','😹','🙀','😺'],
+    selectedImageId: '' // 当前选择的图片ID
+    
+    // showEmojiPopup: false, // 控制表情弹窗显示
+    // selectedEmoji: '',
+    // selectedImageId: '', // 当前选中的图片ID
+    // emojiPosition: {
+    //   top: 0,
+    //   left: 0
+    // },
+    // emojis: ['😻','😹','🙀','😺'] // 可用表情列表
   },
 
   onLoad: function(options) {
@@ -76,6 +91,7 @@ Page({
     this.findbubbleText2();
     this.findbubbleText3();
     this.findbubbleText4();
+
   },
   onUnload: function() {
     if (this.messageWatcher) {
@@ -93,6 +109,48 @@ Page({
   getCurrentUserNum: function() {
     return wx.getStorageSync('userInfo').num;
   },
+
+  showEmojiPopup(event) {
+    const { messageId } = event.currentTarget.dataset;
+    this.setData({
+      showEmojiPopup: true,
+      selectedImageId: messageId,
+    });
+  },
+
+  closeEmojiPopup(){
+    this.setData({
+      showEmojiPopup: false
+    });
+  },
+
+  selectEmoji(event) {
+    const { messageId } = event.currentTarget.dataset;
+    const emoji = event.currentTarget.dataset.emoji;
+    console.log(emoji)
+    const db = wx.cloud.database();
+    const updatedMessages = this.data.chatMessages.map(msg => {
+      if (msg._id === this.data.selectedImageId) {
+        return {
+          ...msg,
+          selectedEmoji: emoji
+        };
+      }
+      return msg;
+    });
+    db.collection('messages').where({_id:messageId}).update({
+      data: {
+        emoji:emoji
+      }
+    })
+
+    this.setData({
+      selectedEmoji: emoji,
+      showEmojiPopup: false,
+      chatMessages: updatedMessages
+    })
+  },
+
 
   loadChatMessages: async function(currentUserNum, otherUserNum, addLength, scrollToTop, scrollToBottom) {
     const db = wx.cloud.database();

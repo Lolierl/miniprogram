@@ -15,15 +15,35 @@
           <view class="message-item {{item.senderNum == currentUserNum ? 'sent' : 'received'}}">
             <text wx:if="{{item.messageType === 'text'}}" class="message-content">{{item.message}}</text>
             <block wx:if="{{item.messageType === 'image'}}">
-              <image class="message-image {{item.imageStatus === 'new image' && item.receiverNum === currentUserNum ? 'blurred' : ''}}" src="{{item.message}}" mode="aspectFill" data-src="{{item.message}}" bindtap="{{item.imageStatus !== 'new image' || item.receiverNum !== currentUserNum ? 'previewImage' : ''}}" />
+              <image class="message-image {{item.imageStatus === 'new image' && item.receiverNum === currentUserNum ? 'blurred' : ''}}" 
+              src="{{item.message}}" 
+              mode="aspectFill" 
+              data-src="{{item.message}}" 
+              bindtap="{{item.imageStatus !== 'new image' || item.receiverNum !== currentUserNum ? 'previewImage' : ''}}" 
+              bindlongpress="{{item.imageStatus !== 'new image' &&item.receiverNum === currentUserNum ? 'showEmojiPopup' :''}}" 
+              data-message-id="{{item._id}}"/>
+
+              <text wx:if="{{item.selectedEmoji}}" class="selected-emoji">{{item.selectedEmoji}}</text>
+              <view wx:if="{{showEmojiPopup && selectedImageId === item._id}}" class="emoji-popup" >
+                <block wx:for="{{emojis}}" wx:key="index">
+                  <text class="emoji" data-emoji="{{item}}" bindtap="selectEmoji">{{item}}</text>
+                </block>
+                <image class="closeEmojiPopup" src="/image/close.png" bind:tap="closeEmojiPopup" />
+              </view>
+              
+              
               <view wx:if="{{item.imageStatus === 'new image' && item.receiverNum === currentUserNum}}" class="exchange-button" bindtap="exchangeImage" data-messageId="{{item._id}}">Exchange</view>
+
             </block>
+
             <text wx:if="{{item.isUnread && item.senderNum == currentUserNum}}" class="unread-indicator">Unread</text>
+            
           </view>
+          
         </view>
     </block>
-  </scroll-view>
 
+  </scroll-view>
 
 
 
