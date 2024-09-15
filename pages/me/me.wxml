@@ -15,8 +15,12 @@
 
 </view>
 
+<button class="help">help</button>
 
-<button class="changeavatar" open-type="chooseAvatar" bindchooseavatar="ChangeAvatar">ChangeAvatar</button>
+<button class="changeavatar" open-type="chooseAvatar" bindchooseavatar="ChangeAvatar">change avatar</button>
+
+<button class="changename" bind:tap="ChangeName">change name</button>
+
 
 <view class="user-text2" bind:tap="logout">Log out</view>
 

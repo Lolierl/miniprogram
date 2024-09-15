@@ -55,6 +55,7 @@ Page({
       wx.hideLoading();
       wx.showToast({
         title: 'Avatar updated',
+        icon: 'success'
       });
       const num = this.data.userInfo.num
       db.collection("login_users").where({
@@ -69,7 +70,6 @@ Page({
       })
     })
     })
-    
     .catch(error => {
       console.error('Update failed', error);
       wx.hideLoading();
@@ -77,6 +77,54 @@ Page({
         title: 'Update failed',
         icon: 'none'
       });
+    });
+  },
+
+  // 修改昵称
+  ChangeName() {
+    wx.showModal({
+      title: 'Change Nickname',
+      content: '输入新昵称',
+      editable: true,
+      success: (res) => {
+        if (res.confirm) {
+          this.updateNickname(res.content);
+        }
+      }
+    });
+  },
+
+  updateNickname(newName) {
+    const db = wx.cloud.database();
+    const num = this.data.userInfo.num
+    db.collection('login_users').where({num:num}).update({
+      data: {
+        nickName: newName
+      },
+      success: (res) => {
+        wx.showToast({
+          title: 'Nickname updated',
+          icon: 'success'
+        });
+        const num = this.data.userInfo.num
+      db.collection("login_users").where({
+        num:num
+      })
+      .get()
+      .then(result=>{
+        wx.setStorageSync('userInfo', result.data[0])
+        this.setData({
+          userInfo:result.data[0]
+        })
+      })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: 'Update failed',
+          icon: 'none'
+        });
+        console.error('Update failed', err);
+      }
     });
   }
   

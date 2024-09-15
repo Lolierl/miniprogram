@@ -70,4 +70,5 @@ input{
   margin-top: 30rpx;
   color: white;
   background-color: #c6e173;
+  border-radius: 100rpx;
 }

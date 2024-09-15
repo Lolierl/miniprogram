@@ -34,3 +34,24 @@
   font-weight: 650;
   font-size: 40rpx;
 }
+
+.help{
+  color: #c6e173;
+  background-color: rgb(243, 243, 243);
+  border-radius: 100rpx;
+  margin-top: 260rpx;
+}
+
+.changename{
+  color: #c6e173;
+  background-color: rgb(243, 243, 243);
+  border-radius: 100rpx;
+  margin-top: 40rpx;
+}
+
+.changeavatar{
+  color: #c6e173;
+  background-color: rgb(243, 243, 243);
+  border-radius: 100rpx;
+  margin-top: 40rpx;
+}

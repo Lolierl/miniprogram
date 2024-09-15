@@ -30,7 +30,7 @@
   text-align: center;
   width: 100%;
   margin-top: -123rpx;
-  font-size: 42rpx;
+  font-size: 35rpx;
   font-weight: 550;
   color: white;
 }
@@ -273,10 +273,49 @@
   justify-content: center;
 }
 .unread-indicator {
-  position: absolute;
-  top: 10rpx; 
-  right: 10rpx;
-  color: red;
+  position: relative;
+  top: 6rpx; 
+  left: 4rpx;
+  color: rgb(233, 157, 157);
   font-size: 24rpx;
   font-weight: bold;
+}
+
+.closeEmojiPopup{
+  width: 38rpx;
+  height: 38rpx;
+  margin-left: 200rpx;
+  margin-top: -58rpx;
+
+}
+
+.image-container {
+  position: relative;
+  width: 100rpx;
+}
+
+.selected-emoji {
+  position: relative;
+  top: -20rpx;
+  left: 175rpx;
+  font-size: 50rpx;
+  z-index: 1;
+}
+
+.emoji-popup {
+  position: relative;
+  background-color: white;
+  /* border: 1px solid #ccc; */
+  border-radius:50rpx;
+  margin-top: 10rpx;
+  padding: 10rpx;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+  z-index: 1000;
+}
+
+.emoji {
+  display: inline-block;
+  font-size: 40rpx;
+  margin:0 0 8rpx 8rpx;
+  cursor: pointer;
 }
