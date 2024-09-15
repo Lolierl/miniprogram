@@ -1,4 +1,5 @@
 // pages/message/message.js
+
 Page({
   data: {
     chatMessages: [],
@@ -116,6 +117,7 @@ Page({
 
   showEmojiPopup(event) {
     const { messageId } = event.currentTarget.dataset;
+    console.log(messageId);
     this.setData({
       showEmojiPopup: true,
       selectedImageId: messageId,
@@ -129,30 +131,42 @@ Page({
   },
 
   selectEmoji(event) {
-    const { messageId } = event.currentTarget.dataset;
     const emoji = event.currentTarget.dataset.emoji;
-    console.log(emoji)
+    console.log(emoji);
     const db = wx.cloud.database();
-    const updatedMessages = this.data.chatMessages.map(msg => {
-      if (msg._id === this.data.selectedImageId) {
-        return {
-          ...msg,
-          selectedEmoji: emoji
-        };
-      }
-      return msg;
-    });
-    db.collection('messages').where({_id:messageId}).update({
-      data: {
-        emoji:emoji
-      }
-    })
 
-    this.setData({
-      selectedEmoji: emoji,
-      showEmojiPopup: false,
-      chatMessages: updatedMessages
-    })
+    // 使用 this.data.selectedImageId 获取 messageId
+    const messageId = this.data.selectedImageId;
+
+    // 更新 chatMessages 中的选中消息
+    const updatedMessages = this.data.chatMessages.map(msg => {
+        if (msg._id === messageId) {
+            return {
+                ...msg,
+                selectedEmoji: emoji
+            };
+        }
+        return msg;
+    });
+
+    // 更新数据库中的记录
+    db.collection('messages').doc(messageId).update({
+        data: {
+            emoji: emoji
+        },
+        success: (res) => {
+            console.log('记录更新成功', res);
+            // 更新本地状态
+            this.setData({
+                chatMessages: updatedMessages
+            });
+            // 关闭弹窗
+            this.closeEmojiPopup();
+        },
+        fail: (err) => {
+            console.error('记录更新失败', err);
+        }
+    });
   },
 
 

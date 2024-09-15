@@ -126,6 +126,12 @@ Page({
         console.error('Update failed', err);
       }
     });
+  },
+
+  gohelp(){
+    wx.navigateTo({
+      url: '/pages/help/help',
+    })
   }
   
 })

@@ -2,6 +2,7 @@
   "pages": [
     "pages/start/start",
     "pages/index/index",
+   
     "pages/message/message",
     "pages/chat/chat",
     "pages/me/me",
@@ -9,8 +10,8 @@
     "pages/friends/friends",
     "pages/register/register",
     "pages/addfriends/addfriends",
-    "pages/newfriends/newfriends"
-    
+    "pages/newfriends/newfriends",
+    "pages/help/help"
   ],
   "subPackages": [],
   "window": {
