@@ -105,3 +105,21 @@
   height: 100%;
   overflow: scroll;
 }
+
+.wrap3{
+  height: 100rpx;
+  width: 100%;
+
+}
+
+.add-text1{
+  margin-left: 20rpx;
+  font-size: 40rpx;
+  font-weight: 650;
+  color: #e6e6e6;
+}
+
+.add-img1{
+  width: 92rpx;
+  height: 92rpx;
+}

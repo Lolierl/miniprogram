@@ -1,7 +1,7 @@
 <!--pages/friends/friends.wxml-->
 
 <!-- <scroll-view  scroll-y="true"> -->
-<!-- <scroll-view class="message-list" scroll-y="true" > -->
+<scroll-view class="message-list" scroll-y="true" >
 <!-- 加好友入口 -->
 <view class="add-wrap1" bind:tap="toAddfriends">
   <image src="/image/add.png" class="add-img" mode=""/>
@@ -13,13 +13,18 @@
   <view class="add-text">Friend Requests</view>
 </view>
 
+<view class="add-wrap2" bind:tap="gohelp">
+  <image src="/image/gohelp1.png" class="add-img1"/>
+  <view class="add-text1">Guidance</view>
+</view>
+
 <!-- 好友列表 -->
 <image src="/image/cover2.png" class="cover2"/>
 
 <view class="container">
   <text class="title">My Friends</text>
 
-  <scroll-view class="friend-list" scroll-y="true">
+  <!-- <scroll-view class="friend-list" scroll-y="true"> -->
     <block wx:for="{{friends}}" wx:key="index" >
       <!-- <view>{{item.BuserPhone}}</view>
       <view>{{myphone0}}</view> -->
@@ -34,9 +39,10 @@
         </view>
       </view>
     </block>
-    </scroll-view>
+    <!-- </scroll-view> -->
 </view>
 
 <image src="/image/cover3.png" class="cover2"/>
+<view class="wrap3"></view>
 <!-- </scroll-view> -->
-<!-- </scroll-view> -->
+</scroll-view>

@@ -76,19 +76,26 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* 确保容器内的项目在左侧对齐 */
+
 }
 
 .message-item {
   display: flex;
   flex-direction: column;
-  max-width: 70%; /* 设定最大宽度 */
+  max-width: 70%; /* 气泡最大宽度 */
+  min-width: 60rpx; /* 设置最小宽度 */
   margin-top: 12rpx;
   margin-bottom: 12rpx;
-  padding: 20rpx;
+  padding: 20rpx; /* 设置上下左右的内边距 */
   border-radius: 50rpx;
   position: relative;
   word-wrap: break-word; /* 自动换行 */
-  white-space: pre-wrap; /* 保留空白符和换行符 */
+  white-space: normal; /* 允许正常换行 */
+  overflow-wrap: break-word; /* 确保长单词也能换行 */
+  box-sizing: border-box; /* 包含 padding 在内 */
+  align-self: flex-start; /* 左对齐 */
+  /* 假设行高是 36rpx，加上上下 padding 的总和 40rpx，设置最小高度为 76rpx */
+  min-height: calc(36rpx + 40rpx); /* 确保最小高度足够 */
 }
 
 .sent {
@@ -112,30 +119,30 @@
 
 .input {
   flex: 1;
-  width: 290rpx;
+  width: 390rpx;
   height: 88rpx;
   padding: 0 15rpx;
   font-size: 25rpx;
   border: 1px solid #d9d9d9;
   border-radius: 50rpx;
-  margin-left: 0rpx;
-  margin-top: 20rpx;
+  margin-left: 10rpx;
+  margin-top: -5rpx;
 }
 .photo-button {
-  width: 400rpx;
+  width: 280rpx;
   height: 90rpx;
   border-radius: 50rpx;
   margin-left:17rpx;
-  margin-top: -5rpx;
+  margin-top: 20rpx;
   background-color: #c6e173;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20rpx; 
+  margin-right: 0rpx; 
 }
 
 .send-button {
-  width: 290rpx;
+  width: 280rpx;
   height: 90rpx;
   background-color: #dbdbdb;
   color: #ffffff;
@@ -146,7 +153,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 50rpx;
-  margin-left: 20rpx;
+  margin-left: 17rpx;
   margin-top: -5rpx;
 }
 
@@ -170,7 +177,7 @@
   background-color: #f3ebed;
   margin-top: 20rpx;
   margin-bottom: 0rpx;
-  margin-left: 15rpx;
+  margin-left: 5rpx;
   color: white;
   font-weight: 550;
   font-size: 40rpx;
@@ -186,7 +193,7 @@
   background-color: #efede1;
   margin-top: 20rpx;
   margin-bottom: 0rpx;
-  margin-left: 15rpx;
+  margin-left: 12rpx;
   color: white;
   font-weight: 550;
   font-size: 40rpx;
@@ -201,7 +208,7 @@
   background-color: #ebeed4;
   margin-top:20rpx;
   margin-bottom: 0rpx;
-  margin-left: 15rpx;
+  margin-left: 12rpx;
   color: white;
   font-weight: 550;
   font-size: 40rpx;
@@ -216,7 +223,7 @@
   background-color: #e7f0c8;
   margin-top: 20rpx;
   margin-bottom: 0rpx;
-  margin-left: 15rpx;
+  margin-left: 12rpx;
   color: white;
   font-weight: 550;
   font-size: 40rpx;

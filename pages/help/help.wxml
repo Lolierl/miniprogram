@@ -5,9 +5,7 @@
   <view class="wrap1">
     <text class="text">   </text>
   </view>
-  <view>
-    <image src="/image/start1.png" class="intro"/>
-  </view>
+  
   <view>
     <image src="/image/help.png" class="intro"/>
   </view>

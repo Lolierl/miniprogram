@@ -53,13 +53,8 @@
 
   
   <view class="wrap1"> 
-  <!-- 输入框 -->
-    <view>
-      <input 
-        class="input" 
-        bindinput="onInput"
-        value="{{messageText}}" />
-    </view>
+    
+  
     
   <!-- 口头禅 -->
     <view class="container1">
@@ -105,19 +100,27 @@
         </block>
       </view>
     </view>
+
+    <view class="photo-button" bindtap="chooseImage">
+      <image src="/image/photo.png" class="photo-icon"/>
+      <text class="text-photo">Photo</text>
+    </view>
   
   </view>
 
 
   <!-- 底部发送按钮 -->
   <view class="footer">
-    
+    <!-- 输入框 -->
+    <view>
+      <input 
+        class="input" 
+        bindinput="onInput"
+        value="{{messageText}}" />
+    </view>
     <view class="send-button" bindtap="sendMessage">Send</view>
     
-    <view class="photo-button" bindtap="chooseImage">
-      <image src="/image/photo.png" class="photo-icon"/>
-      <text class="text-photo">Photo</text>
-    </view>
+    
     
   </view>
 </view>

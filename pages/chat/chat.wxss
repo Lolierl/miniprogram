@@ -77,3 +77,9 @@
   height: 100%;
   overflow: scroll;
 }
+
+.wrap3{
+  height: 300rpx;
+  width: 100%;
+
+}

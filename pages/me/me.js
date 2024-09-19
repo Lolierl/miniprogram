@@ -128,10 +128,6 @@ Page({
     });
   },
 
-  gohelp(){
-    wx.navigateTo({
-      url: '/pages/help/help',
-    })
-  }
+  
   
 })

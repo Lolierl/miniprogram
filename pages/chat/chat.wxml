@@ -8,16 +8,19 @@
 
 <scroll-view class="message-list" scroll-y="true">
 <!-- <scroll-view scroll-y="true"> -->
-  <block wx:for="{{chatList}}" wx:key="index" >
-    <view class="chat-item" bindtap="navigateToMessage" data-otherUserNum="{{item.otherUserInfo.num}}">
-      <image class="avatar" src="{{item.otherUserInfo.avatarUrl}}" mode="aspectFill" />
-      <view class="red-dot" wx:if="{{item.hasUnreadMessages}}"></view>
-      <view class="chat-info">
-        <text class="nickname">{{item.otherUserInfo.nickName}}</text>
-        <view class="last-message">{{item.lastMessage}}</view>
-    
+  <view>
+    <block wx:for="{{chatList}}" wx:key="index" >
+      <view class="chat-item" bindtap="navigateToMessage" data-otherUserNum="{{item.otherUserInfo.num}}">
+        <image class="avatar" src="{{item.otherUserInfo.avatarUrl}}" mode="aspectFill" />
+        <view class="red-dot" wx:if="{{item.hasUnreadMessages}}"></view>
+        <view class="chat-info">
+          <text class="nickname">{{item.otherUserInfo.nickName}}</text>
+          <view class="last-message">{{item.lastMessage}}</view>
+      
+        </view>
       </view>
-    </view>
-  </block>
+    </block>
+    <view class="wrap3"></view>
+  </view>
 <!-- </scroll-view> -->
 </scroll-view>
