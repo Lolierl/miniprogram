@@ -71,6 +71,8 @@ Page({
     }
 
     const chatListPromises = res.map(chat_users => {
+      const message = chat_users.lastMessage
+      chat_users.lastMessage = message.length > 15 ? message.substring(0, 15) + '...' : message
       let otherUserNum;
       
       // 判断谁是非本人的用户
