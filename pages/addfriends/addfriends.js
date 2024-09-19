@@ -16,7 +16,6 @@ Page({
   },
 
   getInput(e){
-    console.log(e),
     this.setData({
       search_value:e.detail.value
     })
@@ -105,12 +104,18 @@ Page({
     var that = this
     let userinfo = wx.getStorageSync('userInfo');
     let targetUser = that.data.search_list.num;
-
+    const _ = db.command
     // 查询是否已经是好友
-    db.collection("chat_users").where({
+    db.collection("chat_users").where(_.or([
+    {
         Auser: userinfo.num,
         Buser: targetUser
-    }).get().then(res => {
+    }, 
+    {
+      Auser: targetUser,
+      Buser: userinfo.num
+    }])
+    ).get().then(res => {
         if (res.data.length > 0 && res.data[0].status == 1) {
             wx.showToast({
                 title: '已是好友',

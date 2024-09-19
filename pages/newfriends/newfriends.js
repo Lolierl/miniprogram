@@ -30,7 +30,7 @@ Page({
   //获取添加好友信息
   getstatus(){
     let _ = db.command
-    let acount = wx.getStorageSync('userinfo').num
+    let acount = wx.getStorageSync('userInfo').num
     db.collection("chat_users").where(_.or([
       {
         Auser: acount

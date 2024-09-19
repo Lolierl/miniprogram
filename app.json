@@ -2,7 +2,6 @@
   "pages": [
     "pages/start/start",
     "pages/index/index",
-   
     "pages/message/message",
     "pages/chat/chat",
     "pages/me/me",

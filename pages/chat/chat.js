@@ -69,7 +69,7 @@ Page({
     res.push(...result.data)
     skip += BATCH_SIZE; 
     }
-    console.log(res)
+
     const chatListPromises = res.map(chat_users => {
       let otherUserNum;
       
