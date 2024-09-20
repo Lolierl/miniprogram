@@ -81,5 +81,6 @@
 
 <view class="back" bind:tap="toFriends">back</view>
 
+<view class="wrap3"></view>
 </scroll-view>
 

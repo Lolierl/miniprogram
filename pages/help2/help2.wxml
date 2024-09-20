@@ -1,0 +1,20 @@
+<!--pages/help2/help2.wxml-->
+<scroll-view class="message-list" scroll-y="true" >
+
+<view class="chat-list">
+  <view class="wrap1">
+    <text class="text">   </text>
+  </view>
+  
+  <view>
+    <image src="/image/start1.png" class="intro"/>
+  </view>
+  <image src="/image/cover3.png" class="cover"/>
+  <view class="wrap3">
+    <text class="text">   </text>
+  </view>
+</view>
+
+<view class="back" bind:tap="tome">back</view>
+
+</scroll-view>

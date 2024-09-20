@@ -118,3 +118,9 @@
   height: 100%;
   overflow: scroll;
 }
+
+.wrap3{
+  height: 100rpx;
+  width: 100%;
+
+}

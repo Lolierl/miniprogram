@@ -10,7 +10,8 @@
     "pages/register/register",
     "pages/addfriends/addfriends",
     "pages/newfriends/newfriends",
-    "pages/help/help"
+    "pages/help/help",
+    "pages/help2/help2"
   ],
   "subPackages": [],
   "window": {

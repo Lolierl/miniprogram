@@ -1,0 +1,51 @@
+/* pages/help2/help2.wxss */
+.back{
+  position: fixed;
+  bottom: 100rpx;
+  color: #c6e173;
+  margin-left: 320rpx;
+  font-size: 50rpx;
+  font-weight: 650;
+}
+
+.wrap1 {
+  height: 200rpx;
+  background-color:#ecd6eb; 
+}
+
+.wrap3 {
+  height: 400rpx;
+  background-color:white; 
+}
+
+.intro {
+  margin-top: -10rpx;
+  width: 100%;
+  height: 2300rpx;
+}
+
+.cover {
+  width: 100%;
+  height: 170rpx;
+  margin-bottom: -40rpx;
+}
+
+.text {
+  display: flex;
+  font-size: 60rpx;
+  font-weight: 650;
+  margin-top: 250rpx;
+  margin-left: 45rpx;
+  color: white;
+}
+
+.chat-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-list {
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
+}

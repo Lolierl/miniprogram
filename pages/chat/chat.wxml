@@ -1,6 +1,10 @@
 <!--pages/chat/chat.wxml-->
 <view class="chat-list">
+  
   <view class="wrap1">
+    <view class="add-wrap2" bind:tap="gohelp2">
+      <image src="/image/gohelp2.png" class="help"/>
+    </view>
     <text class="title">My Chats</text>
   </view>
   <image src="/image/cover3.png" class="cover"/>

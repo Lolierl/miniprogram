@@ -22,8 +22,8 @@
   display: flex;
   font-size: 42rpx;
   font-weight: 650;
-  margin-top: 97rpx;
-  margin-left: 277rpx;
+  margin-top: -60rpx;
+  margin-left: 280rpx;
   color: white;
 }
 
@@ -82,4 +82,11 @@
   height: 300rpx;
   width: 100%;
 
+}
+
+.help{
+  margin-top: 85rpx;
+  margin-left: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
 }

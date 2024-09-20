@@ -126,5 +126,11 @@ Page({
     wx.navigateTo({
       url: `/pages/message/message?otherUserNum=${otherUserNum}`
     });
-  }
+  },
+
+  gohelp2(){
+    wx.navigateTo({
+      url: '/pages/help2/help2',
+    })
+  },
 });
