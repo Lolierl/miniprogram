@@ -5,6 +5,7 @@
     "pages/message/message",
     "pages/chat/chat",
     "pages/me/me",
+    
     "custom_tab_bar/index",
     "pages/friends/friends",
     "pages/register/register",

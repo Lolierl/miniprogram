@@ -14,7 +14,7 @@
 
   <view class="wrap2">
     <image src="/image/phonenumber.png" class="account-img"></image>
-    <input type="number" name="phone" placeholder="Phone number" class="ipt"/>
+    <input type="number" bindtap="showConfirmDialog" name="phone" placeholder="Number" class="ipt"/>
   </view>
 
   <view class="wrap2">

@@ -2,7 +2,7 @@
 
 <view class="search-wrap1">
   <!-- <icon type="search" class="icon-search" wx:if="{{isSearch}}"/> -->
-  <input type="number" placeholder="phone number" bindinput="getInput" confirm-type="search"/>
+  <input type="number" placeholder="Number" bindinput="getInput" confirm-type="search"/>
   <view bind:tap="search">
     <image src="/image/search.png" class="search-img"/>
   </view>
