@@ -884,9 +884,11 @@ Page({
   // 用户B进入聊天页面时触发的函数
 async triggerBubblesForUserB() {
   const db = wx.cloud.database();
+  const userANum = this.data.otherUserNum
   const userBNum = this.data.currentUserNum; // 用户B的num
   db.collection('PhraseMsg')
     .where({
+      num1: userANum, 
       num2: userBNum,
       status: 0
     })
