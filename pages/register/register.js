@@ -5,14 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    notisfied:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.data.notisfied = false; 
   },
 
   toLogin(){
@@ -123,10 +123,14 @@ Page({
   },
 
   showConfirmDialog(){
-    wx.showModal({
-      title: '提示',
-      content: '请输入一串数字，这串数字将用于登陆、搜索和添加好友，为避免重复和忘记，建议使用电话号码~'
-    })
+    if(!this.data.notisfied)
+    {
+      wx.showModal({
+        title: '提示',
+        content: '请输入一串数字，这串数字将用于登陆、搜索和添加好友，为避免重复和忘记，建议使用电话号码~'
+      })
+      this.data.notisfied = true; 
+    }
   }
 
   
